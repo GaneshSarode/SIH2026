@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 
 export default function AlertCard({ alert, index }: { alert: Alert, index: number }) {
   const isCritical = alert.severity === 'critical';
-  const colorVar = isCritical ? 'var(--color-status-critical)' : 'var(--color-status-warning)';
   const colorHex = isCritical ? '#ef4444' : '#f59e0b';
   
   return (
