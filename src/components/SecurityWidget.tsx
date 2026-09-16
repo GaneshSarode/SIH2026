@@ -5,15 +5,15 @@ export default function SecurityWidget({ data }: { data: SecurityStatus }) {
   const isSecure = data.encrypted && data.unauthorizedAttempts === 0;
 
   return (
-    <div className="flex flex-col p-6 rounded-lg bg-[var(--color-surface)] border border-[var(--color-border)]">
+    <div className="flex flex-col p-6 rounded-lg bg-[var(--color-surface)] border border-[var(--color-border)] shadow-sm">
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-sm text-gray-400">Cybersecurity Posture</h3>
+        <h3 className="text-sm text-gray-500 dark:text-gray-400 font-medium">Cybersecurity Posture</h3>
         {isSecure ? (
-          <span className="flex items-center gap-1 text-xs px-2 py-0.5 rounded bg-green-100 text-green-700 border border-green-200">
+          <span className="flex items-center gap-1 text-xs px-2 py-0.5 rounded bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 border border-green-200 dark:border-green-800/50">
             <ShieldCheck className="w-3 h-3" /> Secure
           </span>
         ) : (
-          <span className="flex items-center gap-1 text-xs px-2 py-0.5 rounded bg-red-100 text-red-700 border border-red-200">
+          <span className="flex items-center gap-1 text-xs px-2 py-0.5 rounded bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 border border-red-200 dark:border-red-800/50">
             <ShieldAlert className="w-3 h-3" /> Vulnerable
           </span>
         )}
@@ -21,7 +21,7 @@ export default function SecurityWidget({ data }: { data: SecurityStatus }) {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="flex items-center gap-3 border-b border-[var(--color-border)] pb-3 sm:border-b-0 sm:pb-0">
-          <div className={`p-2 rounded-full ${data.encrypted ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+          <div className={`p-2 rounded-full ${data.encrypted ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'}`}>
             <Lock className="w-5 h-5" />
           </div>
           <div className="flex flex-col">
@@ -31,7 +31,7 @@ export default function SecurityWidget({ data }: { data: SecurityStatus }) {
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-full bg-blue-900/30 text-blue-400">
+          <div className="p-2 rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400">
             <Server className="w-5 h-5" />
           </div>
           <div className="flex flex-col">

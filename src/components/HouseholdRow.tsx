@@ -13,12 +13,12 @@ export default function HouseholdRow({ reading, index }: { reading: HouseholdRea
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05 }}
     >
-      <Link href={`/node/${reading.id}`} className="flex items-center justify-between p-4 mb-3 rounded bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-gray-300 hover:bg-gray-50 transition-colors group cursor-pointer shadow-sm hover:shadow-md">
+      <Link href={`/node/${reading.id}`} className="flex items-center justify-between p-4 mb-3 rounded bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-status-online)] hover:bg-[var(--background)] transition-colors group cursor-pointer shadow-sm hover:shadow-md">
         <div className="flex items-center gap-6">
           <span className="font-mono text-lg font-medium group-hover:text-[var(--color-status-online)] transition-colors">{reading.id}</span>
           <div className="flex flex-col">
-            <span className="text-xs text-gray-400 uppercase tracking-wider mb-1">Consumption Today</span>
-            <span>{reading.kWhToday.toFixed(1)} <span className="text-gray-500 text-sm">kWh</span></span>
+            <span className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Consumption Today</span>
+            <span className="font-medium text-lg">{reading.kWhToday.toFixed(1)} <span className="text-gray-500 text-sm font-normal">kWh</span></span>
           </div>
         </div>
         <div className="flex items-center gap-4">
@@ -32,7 +32,7 @@ export default function HouseholdRow({ reading, index }: { reading: HouseholdRea
               {isOnline ? 'Online' : 'Low Output'}
             </span>
           </div>
-          <ChevronRight className="w-5 h-5 text-gray-600 group-hover:text-gray-300 transition-colors" />
+          <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-[var(--color-status-online)] transition-colors" />
         </div>
       </Link>
     </motion.div>

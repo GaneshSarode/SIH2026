@@ -5,9 +5,9 @@ export default function BESSWidget({ data }: { data: BESSData }) {
   const isCharging = data.status === 'charging';
   
   return (
-    <div className="flex flex-col p-6 rounded-lg bg-[var(--color-surface)] border border-[var(--color-border)]">
+    <div className="flex flex-col p-6 rounded-lg bg-[var(--color-surface)] border border-[var(--color-border)] shadow-sm">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-sm text-gray-400">Battery System (BESS)</h3>
+        <h3 className="text-sm text-gray-500 dark:text-gray-400 font-medium">Battery System (BESS)</h3>
         {isCharging ? (
           <BatteryCharging className="w-5 h-5 text-[var(--color-status-online)]" />
         ) : (
@@ -21,9 +21,9 @@ export default function BESSWidget({ data }: { data: BESSData }) {
       </div>
       
       {/* Progress bar */}
-      <div className="w-full bg-gray-100 rounded-full h-2.5 mb-6 overflow-hidden">
+      <div className="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-2.5 mb-6 overflow-hidden">
         <div 
-          className="h-2.5 rounded-full transition-all duration-1000 ease-in-out" 
+          className="h-2.5 rounded-full transition-all duration-1000 ease-in-out shadow-sm" 
           style={{ 
             width: `${data.soc}%`,
             backgroundColor: data.soc > 20 ? 'var(--color-status-online)' : 'var(--color-status-critical)'
