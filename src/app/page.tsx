@@ -1,11 +1,15 @@
 import MetricCard from "@/components/MetricCard";
 import HouseholdRow from "@/components/HouseholdRow";
-import { getCapacityKW, getHouseholdReadings, getSupplyDemandSeries } from "@/lib/mockData";
+import BESSWidget from "@/components/BESSWidget";
+import PowerQualityWidget from "@/components/PowerQualityWidget";
+import { getCapacityKW, getHouseholdReadings, getSupplyDemandSeries, getBESSData, getPowerQuality } from "@/lib/mockData";
 
 export default function Home() {
   const capacity = getCapacityKW();
   const readings = getHouseholdReadings();
   const series = getSupplyDemandSeries();
+  const bessData = getBESSData();
+  const pqData = getPowerQuality();
   
   // Get latest generation/demand
   const latestData = series[series.length - 1];
@@ -14,7 +18,9 @@ export default function Home() {
     <div className="flex flex-col gap-10">
       <section>
         <h1 className="text-3xl font-medium tracking-tight mb-6">System Overview</h1>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        {/* Top row: Core Generation Metrics */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
           <MetricCard 
             title="Rated Capacity" 
             value={capacity} 
@@ -30,6 +36,12 @@ export default function Home() {
             value={latestData.demand} 
             unit="kW" 
           />
+        </div>
+
+        {/* Second row: Hardware Telemetry */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <BESSWidget data={bessData} />
+          <PowerQualityWidget data={pqData} />
         </div>
       </section>
 

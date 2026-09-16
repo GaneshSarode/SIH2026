@@ -104,3 +104,37 @@ export function getAlerts(): Alert[] {
 export function getCapacityKW(): number {
   return 100;
 }
+
+// ---- BESS & Power Quality ----
+
+export interface BESSData {
+  soc: number;
+  temperature: number;
+  status: "charging" | "discharging" | "idle";
+  health: number;
+}
+
+export function getBESSData(): BESSData {
+  // TODO: Replace with query to BESS telemetry table
+  return {
+    soc: 78,
+    temperature: 34.2,
+    status: "charging",
+    health: 91,
+  };
+}
+
+export interface PowerQuality {
+  voltage: number;
+  frequency: number;
+  thd: number;
+}
+
+export function getPowerQuality(): PowerQuality {
+  // TODO: Replace with query to power quality telemetry table
+  return {
+    voltage: 231.5,
+    frequency: 50.02,
+    thd: 2.1,
+  };
+}
