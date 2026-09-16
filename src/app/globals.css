@@ -7,18 +7,27 @@
   --font-mono: var(--font-geist-mono);
   
   /* Status Colors */
-  --color-status-online: #16a34a; /* Green 600 */
-  --color-status-warning: #f59e0b; /* Amber */
-  --color-status-critical: #ef4444; /* Red */
+  --color-status-online: #10b981; 
+  --color-status-warning: #f59e0b; 
+  --color-status-critical: #ef4444; 
   
   /* UI Colors */
-  --color-surface: #ffffff; /* White card background */
-  --color-border: #e2e8f0; /* Light gray border */
+  --color-surface: var(--surface);
+  --color-border: var(--border);
 }
 
 :root {
-  --background: #f8fafc; /* Light slate base */
-  --foreground: #0f172a; /* Dark text */
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+}
+
+.dark {
+  --background: #0b0f19;
+  --foreground: #f1f5f9;
+  --surface: #171c24;
+  --border: #2a3441;
 }
 
 body {
