@@ -9,11 +9,11 @@ export default function SecurityWidget({ data }: { data: SecurityStatus }) {
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-sm text-gray-400">Cybersecurity Posture</h3>
         {isSecure ? (
-          <span className="flex items-center gap-1 text-xs px-2 py-0.5 rounded bg-teal-900/30 text-teal-400 border border-teal-800/50">
+          <span className="flex items-center gap-1 text-xs px-2 py-0.5 rounded bg-green-100 text-green-700 border border-green-200">
             <ShieldCheck className="w-3 h-3" /> Secure
           </span>
         ) : (
-          <span className="flex items-center gap-1 text-xs px-2 py-0.5 rounded bg-red-900/30 text-red-400 border border-red-800/50">
+          <span className="flex items-center gap-1 text-xs px-2 py-0.5 rounded bg-red-100 text-red-700 border border-red-200">
             <ShieldAlert className="w-3 h-3" /> Vulnerable
           </span>
         )}
@@ -21,7 +21,7 @@ export default function SecurityWidget({ data }: { data: SecurityStatus }) {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="flex items-center gap-3 border-b border-[var(--color-border)] pb-3 sm:border-b-0 sm:pb-0">
-          <div className={`p-2 rounded-full ${data.encrypted ? 'bg-teal-900/30 text-teal-400' : 'bg-red-900/30 text-red-400'}`}>
+          <div className={`p-2 rounded-full ${data.encrypted ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
             <Lock className="w-5 h-5" />
           </div>
           <div className="flex flex-col">

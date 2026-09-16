@@ -21,10 +21,10 @@ export default function OperatorDashboard() {
           </div>
           <button
             onClick={() => setLoadShedding(!loadShedding)}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-md font-medium transition-colors ${
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-md font-medium transition-colors shadow-sm hover:shadow-md ${
               loadShedding 
-                ? 'bg-red-500/10 text-red-500 border border-red-500/20 hover:bg-red-500/20' 
-                : 'bg-[var(--color-surface)] border border-[var(--color-border)] hover:bg-gray-800'
+                ? 'bg-red-50 text-red-600 border border-red-200 hover:bg-red-100' 
+                : 'bg-[var(--color-surface)] border border-[var(--color-border)] hover:bg-gray-50'
             }`}
           >
             {loadShedding ? <PowerOff className="w-4 h-4" /> : <Power className="w-4 h-4" />}

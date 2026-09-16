@@ -21,7 +21,7 @@ export default function BESSWidget({ data }: { data: BESSData }) {
       </div>
       
       {/* Progress bar */}
-      <div className="w-full bg-[#0b0f19] rounded-full h-2.5 mb-6 overflow-hidden">
+      <div className="w-full bg-gray-100 rounded-full h-2.5 mb-6 overflow-hidden">
         <div 
           className="h-2.5 rounded-full transition-all duration-1000 ease-in-out" 
           style={{ 

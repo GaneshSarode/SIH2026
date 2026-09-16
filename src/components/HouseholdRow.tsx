@@ -13,7 +13,7 @@ export default function HouseholdRow({ reading, index }: { reading: HouseholdRea
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05 }}
     >
-      <Link href={`/node/${reading.id}`} className="flex items-center justify-between p-4 mb-3 rounded bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-gray-500 hover:bg-[#1f2633] transition-colors group cursor-pointer">
+      <Link href={`/node/${reading.id}`} className="flex items-center justify-between p-4 mb-3 rounded bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-gray-300 hover:bg-gray-50 transition-colors group cursor-pointer shadow-sm hover:shadow-md">
         <div className="flex items-center gap-6">
           <span className="font-mono text-lg font-medium group-hover:text-[var(--color-status-online)] transition-colors">{reading.id}</span>
           <div className="flex flex-col">

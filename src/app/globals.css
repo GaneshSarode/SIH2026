@@ -7,18 +7,18 @@
   --font-mono: var(--font-geist-mono);
   
   /* Status Colors */
-  --color-status-online: #10b981; /* Teal/Green */
+  --color-status-online: #16a34a; /* Green 600 */
   --color-status-warning: #f59e0b; /* Amber */
   --color-status-critical: #ef4444; /* Red */
   
   /* UI Colors */
-  --color-surface: #171c24; /* Deep navy/charcoal card background */
-  --color-border: #2a3441;
+  --color-surface: #ffffff; /* White card background */
+  --color-border: #e2e8f0; /* Light gray border */
 }
 
 :root {
-  --background: #0b0f19; /* Deep navy/charcoal base */
-  --foreground: #f1f5f9; /* Slate 100 */
+  --background: #f8fafc; /* Light slate base */
+  --foreground: #0f172a; /* Dark text */
 }
 
 body {

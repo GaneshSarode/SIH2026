@@ -7,12 +7,12 @@ export default function SupplyDemandChart({ data }: { data: SupplyDemandPoint[] 
     <div className="w-full h-[400px] p-6 rounded-lg bg-[var(--color-surface)] border border-[var(--color-border)]">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#2a3441" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
           <XAxis dataKey="time" stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} dy={10} />
           <YAxis stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} dx={-10} />
           <Tooltip 
-            contentStyle={{ backgroundColor: '#171c24', borderColor: '#2a3441', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-            itemStyle={{ color: '#e2e8f0', fontSize: '14px' }}
+            contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+            itemStyle={{ color: '#0f172a', fontSize: '14px' }}
             labelStyle={{ color: '#94a3b8', fontSize: '12px', marginBottom: '4px' }}
           />
           <Legend wrapperStyle={{ paddingTop: '20px' }} iconType="circle" />

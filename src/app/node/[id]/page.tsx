@@ -11,7 +11,7 @@ export default async function NodeDetails({ params }: { params: Promise<{ id: st
   return (
     <div className="flex flex-col gap-8">
       <div className="flex items-center gap-4">
-        <Link href="/" className="p-2 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] hover:bg-gray-800 transition-colors">
+        <Link href="/" className="p-2 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] hover:bg-gray-50 transition-colors shadow-sm hover:shadow-md">
           <ArrowLeft className="w-5 h-5" />
         </Link>
         <div>
