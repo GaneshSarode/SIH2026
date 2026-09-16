@@ -1,12 +1,14 @@
 "use client";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import AlertCard from "@/components/AlertCard";
-import { getAlerts } from "@/lib/mockData";
+import SecurityWidget from "@/components/SecurityWidget";
+import { getAlerts, getSecurityStatus } from "@/lib/mockData";
 import { useState } from "react";
 import { Power, PowerOff } from "lucide-react";
 
 export default function OperatorDashboard() {
   const alerts = getAlerts();
+  const securityData = getSecurityStatus();
   const [loadShedding, setLoadShedding] = useState(false);
 
   return (
@@ -29,6 +31,9 @@ export default function OperatorDashboard() {
             {loadShedding ? 'Restore Non-Critical Load' : 'Shed Non-Critical Load'}
           </button>
         </div>
+        
+        {/* Cybersecurity Status Widget */}
+        <SecurityWidget data={securityData} />
 
         <section>
           <div className="flex items-baseline justify-between mb-4">

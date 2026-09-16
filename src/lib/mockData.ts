@@ -138,3 +138,49 @@ export function getPowerQuality(): PowerQuality {
     thd: 2.1,
   };
 }
+
+// ---- Node Details & Cybersecurity ----
+
+export interface NodeTelemetry {
+  voltage: number;
+  current: number;
+  power: number;
+  history: { time: string; consumption: number }[];
+}
+
+export function getNodeDetails(id: string): NodeTelemetry {
+  // TODO: Replace with query fetching specific household telemetry from readings table
+  // Generating a realistic mock curve for a single household
+  const history = [];
+  for (let i = 0; i <= 24; i += 2) {
+    const hourString = `${i.toString().padStart(2, '0')}:00`;
+    let consumption = Math.random() * 0.5 + 0.1; // base load
+    if (i >= 7 && i <= 9) consumption += 1.5; // morning peak
+    if (i >= 18 && i <= 22) consumption += 2.5; // evening peak
+    history.push({ time: hourString, consumption: Number(consumption.toFixed(2)) });
+  }
+
+  return {
+    voltage: id === 'H3' ? 215.2 : 229.8,
+    current: id === 'H3' ? 2.1 : 6.4,
+    power: id === 'H3' ? 0.45 : 1.47,
+    history
+  };
+}
+
+export interface SecurityStatus {
+  encrypted: boolean;
+  activeNodes: number;
+  unauthorizedAttempts: number;
+  lastAudit: string;
+}
+
+export function getSecurityStatus(): SecurityStatus {
+  // TODO: Replace with real auth/security log aggregation
+  return {
+    encrypted: true,
+    activeNodes: 4,
+    unauthorizedAttempts: 0,
+    lastAudit: "2 mins ago"
+  };
+}
