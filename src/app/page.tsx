@@ -165,42 +165,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 4. Split About Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="flex flex-col md:flex-row gap-16 items-center">
-            {/* Text Side */}
-            <div className="flex-1">
-              <h3 className="text-[#00a651] font-bold tracking-widest uppercase mb-3 text-sm">About Iron Will</h3>
-              <h2 className="text-4xl font-bold text-[#004b87] mb-6 leading-tight">Empowering a Carbon-Free Grid</h2>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                We are building the intelligence layer for the modern electricity grid. By integrating smart sensors, IoT gateways, and robust MQTT pipelines, we provide unparalleled visibility into decentralized energy generation.
-              </p>
-              <ul className="space-y-4 mb-8">
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-[#00a651] shrink-0" />
-                  <span className="text-gray-700 font-medium">100% Secure MQTT over TLS infrastructure</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-[#00a651] shrink-0" />
-                  <span className="text-gray-700 font-medium">Real-time hardware integration with ESP32 & LoRa</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-[#00a651] shrink-0" />
-                  <span className="text-gray-700 font-medium">Role-Based Access Control (RBAC) via Supabase Auth</span>
-                </li>
-              </ul>
-              <Link href="/register" className="inline-flex bg-[#004b87] hover:bg-[#003865] text-white px-8 py-3 font-bold uppercase tracking-wide transition-colors rounded-sm">
-                Request Demo Access
-              </Link>
-            </div>
-            {/* Image Side */}
-            <div className="flex-1 relative h-[500px] w-full rounded-sm overflow-hidden shadow-xl">
-              <img src="https://loremflickr.com/800/600/server,technology/all" alt="Corporate" className="absolute inset-0 w-full h-full object-cover" />
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* Footer */}
       <footer className="bg-[#004b87] py-12 text-center text-white/80">
