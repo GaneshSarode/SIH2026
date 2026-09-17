@@ -2,8 +2,8 @@ import Link from "next/link";
 import { getMicrogrids } from "@/lib/mockData";
 import { Zap, ArrowLeft, CheckCircle2, AlertTriangle } from "lucide-react";
 
-export default function MicrogridsPage() {
-  const microgrids = getMicrogrids();
+export default async function MicrogridsPage() {
+  const microgrids = await getMicrogrids();
 
   return (
     <div className="flex flex-col gap-8">
@@ -45,16 +45,16 @@ export default function MicrogridsPage() {
 
             <div className="grid grid-cols-3 gap-3 pt-4 border-t border-[var(--color-border)]">
               <div className="flex flex-col">
-                <span className="text-xs text-gray-500">Capacity</span>
-                <span className="font-semibold">{mg.capacity} <span className="text-xs text-gray-500 font-normal">kW</span></span>
+                <span className="text-xl font-bold">{mg.capacity_kw} <span className="text-sm font-normal text-gray-500">kW</span></span>
+                <span className="text-xs text-gray-500 uppercase tracking-wider mt-1">Capacity</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-xs text-gray-500">Generation</span>
-                <span className="font-semibold">{mg.currentGeneration} <span className="text-xs text-gray-500 font-normal">kW</span></span>
+                <span className="text-xl font-bold">{mg.current_generation} <span className="text-sm font-normal text-gray-500">kW</span></span>
+                <span className="text-xs text-gray-500 uppercase tracking-wider mt-1">Generating</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-xs text-gray-500">Homes</span>
-                <span className="font-semibold">{mg.homeCount}</span>
+                <span className="text-xl font-bold">{mg.home_count}</span>
+                <span className="text-xs text-gray-500 uppercase tracking-wider mt-1">Homes</span>
               </div>
             </div>
           </Link>

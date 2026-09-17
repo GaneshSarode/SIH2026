@@ -5,7 +5,7 @@ import HomeChart from "./HomeChart";
 
 export default async function HomeDetail({ params }: { params: Promise<{ id: string; homeId: string }> }) {
   const { id, homeId } = await params;
-  const data = getHomeTelemetry(id, homeId);
+  const data = await getHomeTelemetry(id, homeId);
   const isLow = data.voltage < 220;
 
   return (

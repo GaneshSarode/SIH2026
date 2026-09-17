@@ -2,11 +2,11 @@ import Link from "next/link";
 import { Activity, Zap, Car, Globe, ShieldCheck, Leaf, TreePine } from "lucide-react";
 import { getMicrogrids, getSecurityStatus } from "@/lib/mockData";
 
-export default function Home() {
-  const microgrids = getMicrogrids();
-  const security = getSecurityStatus();
-  const totalCapacity = microgrids.reduce((sum, m) => sum + m.capacity, 0);
-  const totalGeneration = microgrids.reduce((sum, m) => sum + m.currentGeneration, 0);
+export default async function Home() {
+  const microgrids = await getMicrogrids();
+  const security = await getSecurityStatus();
+  const totalCapacity = microgrids.reduce((sum, m) => sum + m.capacity_kw, 0);
+  const totalGeneration = microgrids.reduce((sum, m) => sum + m.current_generation, 0);
   
   // Carbon impact: ~0.82 kg CO₂ saved per kWh of solar vs coal
   const co2SavedToday = Math.round(totalGeneration * 8 * 0.82);

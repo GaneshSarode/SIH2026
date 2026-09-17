@@ -4,8 +4,8 @@ import { ArrowLeft, Activity, Thermometer, Heart, Zap, Battery } from "lucide-re
 import { getBESSData } from "@/lib/mockData";
 import { AreaChart, Area, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
-export default function BESSPage() {
-  const data = getBESSData();
+export default async function BESSPage() {
+  const data = await getBESSData();
   const isCharging = data.status === "charging";
 
   return (

@@ -3,8 +3,8 @@ import Link from "next/link";
 import { ArrowLeft, Car, BatteryCharging, Plug, ArrowUpDown } from "lucide-react";
 import { getV2GData } from "@/lib/mockData";
 
-export default function V2GPage() {
-  const data = getV2GData();
+export default async function V2GPage() {
+  const data = await getV2GData();
 
   return (
     <div className="flex flex-col gap-8">

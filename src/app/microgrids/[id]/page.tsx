@@ -8,11 +8,11 @@ import SupplyDemandChart from "@/components/SupplyDemandChart";
 
 export default async function MicrogridDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const microgrid = getMicrogridById(id);
-  const homes = getHomesForMicrogrid(id);
-  const series = getSupplyDemandSeries(id);
-  const pqData = getPowerQuality();
-  const securityData = getSecurityStatus();
+  const microgrid = await getMicrogridById(id);
+  const homes = await getHomesForMicrogrid(id);
+  const series = await getSupplyDemandSeries(id);
+  const pqData = await getPowerQuality();
+  const securityData = await getSecurityStatus();
 
   if (!microgrid) {
     return <div className="text-center py-20 text-gray-500">Microgrid not found.</div>;
@@ -35,7 +35,7 @@ export default async function MicrogridDetail({ params }: { params: Promise<{ id
 
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <MetricCard title="Rated Capacity" value={microgrid.capacity} unit="kW" />
+        <MetricCard title="Rated Capacity" value={microgrid.capacity_kw} unit="kW" />
         <MetricCard title="Current Generation" value={latestData.generation} unit="kW" />
         <MetricCard title="Current Demand" value={latestData.demand} unit="kW" />
       </div>
@@ -67,8 +67,8 @@ export default async function MicrogridDetail({ params }: { params: Promise<{ id
                 <div className="flex items-center gap-6">
                   <span className="font-mono text-lg font-semibold group-hover:text-[var(--color-status-online)] transition-colors">{home.id}</span>
                   <div className="flex flex-col">
-                    <span className="text-xs text-gray-500 uppercase tracking-wider mb-0.5">24h Load</span>
-                    <span className="font-medium">{home.kWhToday.toFixed(1)} <span className="text-gray-500 text-sm font-normal">kWh</span></span>
+                    <span className="text-sm text-gray-500">Usage</span>
+                    <span className="font-semibold">{home.kwh_today.toFixed(1)} <span className="text-gray-500 text-sm font-normal">kWh</span></span>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">

@@ -4,8 +4,8 @@ import { ArrowLeft, Globe, TrendingUp, TrendingDown, ArrowUpDown } from "lucide-
 import { getTradeData } from "@/lib/mockData";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
 
-export default function TradePage() {
-  const data = getTradeData();
+export default async function TradePage() {
+  const data = await getTradeData();
 
   return (
     <div className="flex flex-col gap-8">
