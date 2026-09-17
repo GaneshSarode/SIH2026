@@ -128,6 +128,36 @@ export default function BESSClient({ data }: { data: BESSData }) {
         </div>
       </div>
 
+      {/* Connected Homes Section */}
+      <div className="flex flex-col gap-4 mt-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-bold tracking-tight">Connected Homes</h2>
+          <span className="text-sm font-semibold bg-gray-100 px-3 py-1 rounded-full text-gray-600">3 Active Loads</span>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {[
+            { id: "H-101", load: "1.2 kW", status: "online", lastActive: "Just now" },
+            { id: "H-102", load: "0.8 kW", status: "online", lastActive: "Just now" },
+            { id: "H-103", load: "2.5 kW", status: "online", lastActive: "Just now" }
+          ].map((home) => (
+            <div key={home.id} className="p-5 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] shadow-sm flex flex-col justify-between group hover:border-[#004b87] transition-colors cursor-pointer">
+              <div className="flex items-center justify-between mb-4">
+                <span className="font-bold text-[#004b87] text-lg">{home.id}</span>
+                <span className="flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full bg-green-50 text-green-700">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                  {home.status.toUpperCase()}
+                </span>
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="text-sm text-gray-500 uppercase tracking-widest font-semibold">Current Load</span>
+                <span className="text-2xl font-bold text-gray-900">{home.load}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Login / Register Modal */}
       {showAuth && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 backdrop-blur-sm" onClick={() => setShowAuth(false)}>
