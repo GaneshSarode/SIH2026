@@ -42,8 +42,10 @@ export default function MicrogridsClient({ microgrids }: { microgrids: Microgrid
   };
 
   return (
-    <div className="flex flex-col gap-8">
-      <div className="flex items-center gap-4">
+    <div className="w-full bg-[#f8f9fa] min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-12 flex flex-col gap-8">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <Link href="/" className="p-2 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] hover:bg-[var(--background)] transition-colors shadow-sm">
           <ArrowLeft className="w-5 h-5" />
         </Link>
@@ -205,3 +207,4 @@ export default function MicrogridsClient({ microgrids }: { microgrids: Microgrid
     </div>
   );
 }
+</div>
