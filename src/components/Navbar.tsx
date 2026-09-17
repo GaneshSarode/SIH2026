@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import { Activity, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { createClient } from "@/utils/supabase/client";
+import { User } from "@supabase/supabase-js";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -19,8 +21,25 @@ export default function Navbar() {
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const supabase = createClient();
 
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    setMounted(true);
+    const getUser = async () => {
+      const { data } = await supabase.auth.getUser();
+      setUser(data.user);
+    };
+    getUser();
+
+    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+      setUser(session?.user || null);
+    });
+
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
+  }, [supabase.auth]);
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -68,6 +87,24 @@ export default function Navbar() {
             <Moon className="w-4 h-4" />
           )}
         </button>
+        {/* User Auth */}
+        <div className="ml-2 flex items-center pr-1 border-l border-[var(--color-border)] pl-2">
+          {user ? (
+            <button
+              onClick={async () => await supabase.auth.signOut()}
+              className="text-xs font-medium text-gray-500 hover:text-red-500 transition-colors"
+            >
+              Sign Out
+            </button>
+          ) : (
+            <Link
+              href="/login"
+              className="px-3 py-1.5 rounded-full bg-[var(--color-status-online)] text-white text-xs font-semibold hover:opacity-90 transition-opacity"
+            >
+              Login
+            </Link>
+          )}
+        </div>
       </nav>
     </div>
   );
