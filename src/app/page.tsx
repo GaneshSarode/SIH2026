@@ -19,7 +19,7 @@ export default async function Home() {
         {/* Background Image Placeholder */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://loremflickr.com/1600/900/solarpanel,grid/all" 
+            src="/hero-solar.jpg" 
             alt="Solar Panels" 
             className="absolute inset-0 w-full h-full object-cover opacity-80"
           />
