@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { getMicrogridById, getHomesForMicrogrid, getSupplyDemandSeries, getPowerQuality, getSecurityStatus } from "@/lib/mockData";
-import { ArrowLeft, CheckCircle2, AlertTriangle, ChevronRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import MetricCard from "@/components/MetricCard";
 import PowerQualityWidget from "@/components/PowerQualityWidget";
 import SecurityWidget from "@/components/SecurityWidget";
 import SupplyDemandChart from "@/components/SupplyDemandChart";
+import HomesListClient from "./HomesListClient";
 
 export default async function MicrogridDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -50,45 +51,7 @@ export default async function MicrogridDetail({ params }: { params: Promise<{ id
       </div>
 
       {/* Homes List */}
-      <section>
-        <div className="flex items-baseline justify-between mb-4">
-          <h2 className="text-2xl font-semibold tracking-tight">Homes</h2>
-          <span className="text-sm text-gray-500">{homes.length} connected</span>
-        </div>
-        <div className="flex flex-col gap-3">
-          {homes.map((home) => {
-            const isOnline = home.status === "online";
-            return (
-              <Link
-                key={home.id}
-                href={`/microgrids/${id}/${home.id}`}
-                className="flex items-center justify-between p-4 rounded-lg bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-status-online)] hover:bg-[var(--background)] transition-all group cursor-pointer shadow-sm hover:shadow-md"
-              >
-                <div className="flex items-center gap-6">
-                  <span className="font-mono text-lg font-semibold group-hover:text-[var(--color-status-online)] transition-colors">{home.id}</span>
-                  <div className="flex flex-col">
-                    <span className="text-sm text-gray-500">Usage</span>
-                    <span className="font-semibold">{home.kwh_today.toFixed(1)} <span className="text-gray-500 text-sm font-normal">kWh</span></span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-2">
-                    {isOnline ? (
-                      <CheckCircle2 className="w-4 h-4 text-[var(--color-status-online)]" />
-                    ) : (
-                      <AlertTriangle className="w-4 h-4 text-[var(--color-status-warning)]" />
-                    )}
-                    <span className={`text-sm font-medium ${isOnline ? 'text-[var(--color-status-online)]' : 'text-[var(--color-status-warning)]'}`}>
-                      {isOnline ? 'Online' : 'Low Output'}
-                    </span>
-                  </div>
-                  <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-[var(--color-status-online)] transition-colors" />
-                </div>
-              </Link>
-            );
-          })}
-        </div>
-      </section>
+      <HomesListClient homes={homes} microgridId={id} />
     </div>
   );
 }

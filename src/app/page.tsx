@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Activity, Zap, Car, Globe, ShieldCheck, Leaf, TreePine } from "lucide-react";
+import { Activity, Zap, Car, Globe, ShieldCheck, Leaf, TreePine, IndianRupee } from "lucide-react";
 import { getMicrogrids, getSecurityStatus } from "@/lib/mockData";
 
 export default async function Home() {
@@ -121,6 +121,18 @@ export default async function Home() {
             </div>
             <h3 className="text-xl font-semibold mb-2 group-hover:text-amber-500 transition-colors">International Trade</h3>
             <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Cross-border clean energy exchange — enabling renewable power trade across South Asia.</p>
+          </Link>
+
+          {/* Dynamic Pricing */}
+          <Link href="/pricing" className="group p-6 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] shadow-sm hover:shadow-lg hover:border-teal-500 transition-all md:col-span-2">
+            <div className="flex items-start justify-between mb-4">
+              <div className="p-3 rounded-lg bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400">
+                <IndianRupee className="w-6 h-6" />
+              </div>
+              <span className="text-xs px-2 py-1 rounded-full bg-teal-100 text-teal-700 dark:bg-teal-900/30 dark:text-teal-400 font-medium">Live Rates</span>
+            </div>
+            <h3 className="text-xl font-semibold mb-2 group-hover:text-teal-500 transition-colors">Dynamic Pricing</h3>
+            <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Set electricity rates manually, configure price thresholds, and monitor 24h price curves for optimal energy trading.</p>
           </Link>
 
         </div>

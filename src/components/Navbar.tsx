@@ -12,6 +12,7 @@ const navLinks = [
   { href: "/bess", label: "BESS" },
   { href: "/v2g", label: "V2G" },
   { href: "/trade", label: "Trade" },
+  { href: "/pricing", label: "Pricing" },
 ];
 
 export default function Navbar() {
