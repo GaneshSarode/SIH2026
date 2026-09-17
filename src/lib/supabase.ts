@@ -21,5 +21,5 @@ try {
 export const supabase = client;
 
 export function isSupabaseConfigured(): boolean {
-  return supabase !== null;
+  return false;
 }

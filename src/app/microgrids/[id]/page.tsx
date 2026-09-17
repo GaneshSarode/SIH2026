@@ -22,7 +22,7 @@ export default async function MicrogridDetail({ params }: { params: Promise<{ id
   const latestData = series[series.length - 1];
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 max-w-7xl mx-auto px-4 md:px-8 w-full py-8">
       {/* Header */}
       <div className="flex items-center gap-4">
         <Link href="/microgrids" className="p-2 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] hover:bg-[var(--background)] transition-colors shadow-sm">
