@@ -79,7 +79,7 @@ export default async function Home() {
             {/* Microgrids Card */}
             <div className="bg-white rounded-sm overflow-hidden shadow-[0_2px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-shadow group flex flex-col h-full border-t-4 border-transparent hover:border-[#00a651]">
               <div className="h-48 relative bg-gray-200">
-                <img src="https://loremflickr.com/800/600/microgrid,solar/all" alt="Microgrids" className="absolute inset-0 w-full h-full object-cover" />
+                <img src="/card-microgrid.png" alt="Microgrids" className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-[#004b87]/20 group-hover:bg-transparent transition-colors"></div>
               </div>
               <div className="p-8 flex flex-col flex-1">
@@ -96,7 +96,7 @@ export default async function Home() {
             {/* BESS Card */}
             <div className="bg-white rounded-sm overflow-hidden shadow-[0_2px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-shadow group flex flex-col h-full border-t-4 border-transparent hover:border-[#00a651]">
               <div className="h-48 relative bg-gray-200">
-                <img src="https://loremflickr.com/800/600/battery,storage/all" alt="BESS" className="absolute inset-0 w-full h-full object-cover" />
+                <img src="/card-bess.jpg" alt="BESS" className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-[#004b87]/20 group-hover:bg-transparent transition-colors"></div>
               </div>
               <div className="p-8 flex flex-col flex-1">
@@ -113,7 +113,7 @@ export default async function Home() {
             {/* V2G Card */}
             <div className="bg-white rounded-sm overflow-hidden shadow-[0_2px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-shadow group flex flex-col h-full border-t-4 border-transparent hover:border-[#00a651]">
               <div className="h-48 relative bg-gray-200">
-                <img src="https://loremflickr.com/800/600/electriccar,charging/all" alt="V2G" className="absolute inset-0 w-full h-full object-cover" />
+                <img src="/card-v2g.jpg" alt="V2G" className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-[#004b87]/20 group-hover:bg-transparent transition-colors"></div>
               </div>
               <div className="p-8 flex flex-col flex-1">
@@ -130,7 +130,7 @@ export default async function Home() {
             {/* International Trade */}
             <div className="bg-white rounded-sm overflow-hidden shadow-[0_2px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-shadow group flex flex-col h-full border-t-4 border-transparent hover:border-[#00a651]">
               <div className="h-48 relative bg-gray-200">
-                <img src="https://loremflickr.com/800/600/powerline,transmission/all" alt="Trade" className="absolute inset-0 w-full h-full object-cover" />
+                <img src="/card-trade.png" alt="Trade" className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-[#004b87]/20 group-hover:bg-transparent transition-colors"></div>
               </div>
               <div className="p-8 flex flex-col flex-1">
@@ -147,7 +147,7 @@ export default async function Home() {
             {/* Dynamic Pricing */}
             <div className="bg-white rounded-sm overflow-hidden shadow-[0_2px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-shadow group flex flex-col h-full md:col-span-2 border-t-4 border-transparent hover:border-[#00a651]">
               <div className="h-48 relative bg-gray-200">
-                <img src="https://loremflickr.com/800/600/chart,dashboard/all" alt="Pricing" className="absolute inset-0 w-full h-full object-cover" />
+                <img src="/card-pricing.png" alt="Pricing" className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-[#004b87]/20 group-hover:bg-transparent transition-colors"></div>
               </div>
               <div className="p-8 flex flex-col flex-1">
