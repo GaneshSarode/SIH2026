@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Activity, Zap, Car, Globe, ShieldCheck, Leaf, TreePine, IndianRupee } from "lucide-react";
+import { Activity, Zap, Car, Globe, ShieldCheck, Leaf, TreePine, IndianRupee, ArrowRight, CheckCircle2 } from "lucide-react";
 import { getMicrogrids, getSecurityStatus } from "@/lib/mockData";
+import Image from "next/image";
 
 export default async function Home() {
   const microgrids = await getMicrogrids();
@@ -8,137 +9,208 @@ export default async function Home() {
   const totalCapacity = microgrids.reduce((sum, m) => sum + m.capacity_kw, 0);
   const totalGeneration = microgrids.reduce((sum, m) => sum + m.current_generation, 0);
   
-  // Carbon impact: ~0.82 kg CO₂ saved per kWh of solar vs coal
   const co2SavedToday = Math.round(totalGeneration * 8 * 0.82);
   const treesEquivalent = Math.round(co2SavedToday / 22);
 
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Immersive Hero Section (SpaceX Style) */}
-      <section className="relative min-h-[90vh] flex flex-col items-center justify-center -mt-16 bg-black overflow-hidden px-4">
-        {/* Abstract energy grid background */}
-        <div className="absolute inset-0 z-0 opacity-40">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black z-10" />
-          <svg className="absolute w-full h-full" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="1"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-          </svg>
+    <div className="flex flex-col min-h-screen bg-[#f8f9fa] pt-20">
+      
+      {/* 1. Waaree Hero Slider Style */}
+      <section className="relative w-full h-[600px] bg-gray-900 overflow-hidden">
+        {/* Background Image Placeholder */}
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="https://images.unsplash.com/photo-1509391366360-1e97d5259d52?q=80&w=2070&auto=format&fit=crop" 
+            alt="Solar Panels" 
+            fill 
+            className="object-cover opacity-80"
+            priority
+          />
         </div>
-
-        <div className="relative z-20 text-center max-w-4xl mx-auto mt-20">
-          <h1 className="text-6xl md:text-8xl font-bold text-white tracking-tighter mb-6 uppercase" style={{ textShadow: '0 4px 20px rgba(0,0,0,0.5)' }}>
-            Grid<span className="text-[var(--color-status-online)]">Watch</span>
+        
+        {/* Waaree Signature Blue Text Box (Bottom Left) */}
+        <div className="absolute bottom-0 left-0 w-full md:w-[600px] bg-[#004b87] p-10 md:p-14 z-10 text-white">
+          <h2 className="text-[#00a651] font-bold tracking-widest uppercase mb-2 text-sm">GridWatch Platform</h2>
+          <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
+            Pioneering The Future of Clean Energy Networks
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto leading-relaxed mb-12 font-light">
-            THE FUTURE OF POWER. Monitoring clean energy generation, storage, and distribution without a single gram of carbon.
+          <p className="text-gray-200 mb-8 max-w-md">
+            Seamlessly monitor, manage, and trade renewable energy across international borders with our military-grade encrypted platform.
           </p>
-
-          {/* Minimal Stats */}
-          <div className="flex items-center justify-center gap-8 md:gap-16 flex-wrap border-y border-white/10 py-8 backdrop-blur-sm bg-black/20">
-            <div className="flex flex-col items-center">
-              <span className="text-4xl md:text-5xl font-bold text-white mb-2">{totalCapacity}<span className="text-2xl text-[var(--color-status-online)]">kW</span></span>
-              <span className="text-xs text-gray-400 uppercase tracking-widest font-semibold">Clean Capacity</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="text-4xl md:text-5xl font-bold text-white mb-2">{totalGeneration}<span className="text-2xl text-[var(--color-status-online)]">kW</span></span>
-              <span className="text-xs text-gray-400 uppercase tracking-widest font-semibold">Generating Now</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="text-4xl md:text-5xl font-bold text-white mb-2">{microgrids.length}</span>
-              <span className="text-xs text-gray-400 uppercase tracking-widest font-semibold">Microgrids</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
-          <div className="w-[1px] h-12 bg-[var(--color-status-online)] opacity-50" />
+          <Link href="/microgrids" className="inline-flex items-center gap-2 bg-[#00a651] hover:bg-[#008c44] text-white px-6 py-3 font-bold uppercase tracking-wide transition-colors rounded-sm">
+            Explore Solutions <ArrowRight className="w-5 h-5" />
+          </Link>
         </div>
       </section>
 
-      {/* Corporate Dashboard Section (Waaree Style) */}
-      <section className="bg-gray-50 dark:bg-[#0f172a] flex-1 w-full px-4 py-16 -mt-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col items-center mb-12">
-            <h2 className="text-3xl font-bold tracking-tight mb-3 text-[var(--foreground)]">Monitoring Modules</h2>
-            <div className="w-24 h-1 bg-[var(--color-status-online)] rounded-full mb-4"></div>
-            <p className="text-gray-500 text-center max-w-2xl">Access real-time data across all GridWatch infrastructure layers through our enterprise-grade monitoring dashboard.</p>
+      {/* 2. Metrics Strip */}
+      <section className="bg-white shadow-md z-20 relative border-b border-gray-200 py-8">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-gray-100">
+            <div className="flex flex-col items-center text-center px-4">
+              <span className="text-4xl font-bold text-[#004b87] mb-1">{totalCapacity} <span className="text-2xl">kW</span></span>
+              <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">Total Capacity</span>
+            </div>
+            <div className="flex flex-col items-center text-center px-4">
+              <span className="text-4xl font-bold text-[#00a651] mb-1">{totalGeneration} <span className="text-2xl">kW</span></span>
+              <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">Active Generation</span>
+            </div>
+            <div className="flex flex-col items-center text-center px-4">
+              <span className="text-4xl font-bold text-[#004b87] mb-1">{microgrids.length}</span>
+              <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">Global Microgrids</span>
+            </div>
+            <div className="flex flex-col items-center text-center px-4">
+              <div className="flex items-center gap-2 text-[#00a651] mb-1">
+                <ShieldCheck className="w-8 h-8" />
+                <span className="text-4xl font-bold">{security.encrypted ? '100%' : 'Alert'}</span>
+              </div>
+              <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">Encrypted Data</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Our Solutions Section */}
+      <section className="py-20 bg-[#f8f9fa]">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-[#004b87] mb-4">Our Grid Solutions</h2>
+            <div className="w-20 h-1 bg-[#00a651] mx-auto"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Microgrids */}
-            <Link href="/microgrids" className="group flex flex-col p-8 rounded-3xl bg-white dark:bg-[var(--color-surface)] border border-gray-100 dark:border-[var(--color-border)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300">
-              <div className="flex items-start justify-between mb-8">
-                <div className="p-4 rounded-2xl bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400">
-                  <Zap className="w-8 h-8" />
-                </div>
-                <span className="text-xs px-3 py-1.5 rounded-full bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-400 font-semibold">{microgrids.filter(m => m.status === 'online').length}/{microgrids.length} Online</span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Microgrids Card */}
+            <div className="bg-white rounded-sm overflow-hidden shadow-[0_2px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-shadow group flex flex-col h-full border-t-4 border-transparent hover:border-[#00a651]">
+              <div className="h-48 relative bg-gray-200">
+                <Image src="https://images.unsplash.com/photo-1548613052-094191316b23?q=80&w=2070&auto=format&fit=crop" alt="Microgrids" fill className="object-cover" />
+                <div className="absolute inset-0 bg-[#004b87]/20 group-hover:bg-transparent transition-colors"></div>
               </div>
-              <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-[var(--color-status-online)] transition-colors">Microgrids</h3>
-              <p className="text-gray-500 dark:text-gray-400 leading-relaxed flex-1">Monitor renewable microgrids and household energy consumption — 100% solar and wind powered.</p>
-            </Link>
-
-            {/* BESS */}
-            <Link href="/bess" className="group flex flex-col p-8 rounded-3xl bg-white dark:bg-[var(--color-surface)] border border-gray-100 dark:border-[var(--color-border)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300">
-              <div className="flex items-start justify-between mb-8">
-                <div className="p-4 rounded-2xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400">
-                  <Activity className="w-8 h-8" />
-                </div>
-                <span className="text-xs px-3 py-1.5 rounded-full bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 font-semibold">78% SoC</span>
+              <div className="p-8 flex flex-col flex-1">
+                <h3 className="text-xl font-bold text-[#004b87] mb-3">Microgrid Monitoring</h3>
+                <p className="text-gray-600 mb-6 flex-1 text-sm leading-relaxed">
+                  Real-time monitoring of decentralized solar and wind microgrids. Track household energy consumption and predict load spikes.
+                </p>
+                <Link href="/microgrids" className="text-[#00a651] font-bold text-sm uppercase tracking-wide flex items-center gap-1 group-hover:gap-2 transition-all">
+                  View Dashboard <ArrowRight className="w-4 h-4" />
+                </Link>
               </div>
-              <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors">BESS</h3>
-              <p className="text-gray-500 dark:text-gray-400 leading-relaxed flex-1">Battery Energy Storage — store surplus clean energy and eliminate diesel backup dependency.</p>
-            </Link>
+            </div>
 
-            {/* V2G */}
-            <Link href="/v2g" className="group flex flex-col p-8 rounded-3xl bg-white dark:bg-[var(--color-surface)] border border-gray-100 dark:border-[var(--color-border)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300">
-              <div className="flex items-start justify-between mb-8">
-                <div className="p-4 rounded-2xl bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400">
-                  <Car className="w-8 h-8" />
-                </div>
-                <span className="text-xs px-3 py-1.5 rounded-full bg-purple-50 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400 font-semibold">4 EVs Connected</span>
+            {/* BESS Card */}
+            <div className="bg-white rounded-sm overflow-hidden shadow-[0_2px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-shadow group flex flex-col h-full border-t-4 border-transparent hover:border-[#00a651]">
+              <div className="h-48 relative bg-gray-200">
+                <Image src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=2072&auto=format&fit=crop" alt="BESS" fill className="object-cover" />
+                <div className="absolute inset-0 bg-[#004b87]/20 group-hover:bg-transparent transition-colors"></div>
               </div>
-              <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-purple-600 transition-colors">Vehicle-to-Grid</h3>
-              <p className="text-gray-500 dark:text-gray-400 leading-relaxed flex-1">Turn parked EVs into mobile power banks — bidirectional charging for grid stability.</p>
-            </Link>
+              <div className="p-8 flex flex-col flex-1">
+                <h3 className="text-xl font-bold text-[#004b87] mb-3">Battery Storage (BESS)</h3>
+                <p className="text-gray-600 mb-6 flex-1 text-sm leading-relaxed">
+                  Manage commercial battery storage systems. Monitor State of Charge (SoC), health metrics, and dispatch surplus energy.
+                </p>
+                <Link href="/bess" className="text-[#00a651] font-bold text-sm uppercase tracking-wide flex items-center gap-1 group-hover:gap-2 transition-all">
+                  View Dashboard <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
 
+            {/* V2G Card */}
+            <div className="bg-white rounded-sm overflow-hidden shadow-[0_2px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-shadow group flex flex-col h-full border-t-4 border-transparent hover:border-[#00a651]">
+              <div className="h-48 relative bg-gray-200">
+                <Image src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=2072&auto=format&fit=crop" alt="V2G" fill className="object-cover" />
+                <div className="absolute inset-0 bg-[#004b87]/20 group-hover:bg-transparent transition-colors"></div>
+              </div>
+              <div className="p-8 flex flex-col flex-1">
+                <h3 className="text-xl font-bold text-[#004b87] mb-3">Vehicle-to-Grid (V2G)</h3>
+                <p className="text-gray-600 mb-6 flex-1 text-sm leading-relaxed">
+                  Transform EV fleets into mobile power banks. Enable bidirectional charging to stabilize the grid during peak demand hours.
+                </p>
+                <Link href="/v2g" className="text-[#00a651] font-bold text-sm uppercase tracking-wide flex items-center gap-1 group-hover:gap-2 transition-all">
+                  View Dashboard <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+            
             {/* International Trade */}
-            <Link href="/trade" className="group flex flex-col p-8 rounded-3xl bg-white dark:bg-[var(--color-surface)] border border-gray-100 dark:border-[var(--color-border)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300">
-              <div className="flex items-start justify-between mb-8">
-                <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400">
-                  <Globe className="w-8 h-8" />
-                </div>
-                <span className="text-xs px-3 py-1.5 rounded-full bg-amber-50 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 font-semibold">+640 MWh Net</span>
+            <div className="bg-white rounded-sm overflow-hidden shadow-[0_2px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-shadow group flex flex-col h-full border-t-4 border-transparent hover:border-[#00a651]">
+              <div className="h-48 relative bg-gray-200">
+                <Image src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop" alt="Trade" fill className="object-cover" />
+                <div className="absolute inset-0 bg-[#004b87]/20 group-hover:bg-transparent transition-colors"></div>
               </div>
-              <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-amber-600 transition-colors">International Trade</h3>
-              <p className="text-gray-500 dark:text-gray-400 leading-relaxed flex-1">Cross-border clean energy exchange — enabling renewable power trade across South Asia.</p>
-            </Link>
+              <div className="p-8 flex flex-col flex-1">
+                <h3 className="text-xl font-bold text-[#004b87] mb-3">Cross-Border Trade</h3>
+                <p className="text-gray-600 mb-6 flex-1 text-sm leading-relaxed">
+                  Facilitate international renewable energy exchange. Automate grid balancing across South Asian nations.
+                </p>
+                <Link href="/trade" className="text-[#00a651] font-bold text-sm uppercase tracking-wide flex items-center gap-1 group-hover:gap-2 transition-all">
+                  View Dashboard <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
 
             {/* Dynamic Pricing */}
-            <Link href="/pricing" className="group flex flex-col p-8 rounded-3xl bg-white dark:bg-[var(--color-surface)] border border-gray-100 dark:border-[var(--color-border)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 md:col-span-2">
-              <div className="flex items-start justify-between mb-8">
-                <div className="p-4 rounded-2xl bg-teal-50 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400">
-                  <IndianRupee className="w-8 h-8" />
-                </div>
-                <span className="text-xs px-3 py-1.5 rounded-full bg-teal-50 text-teal-700 dark:bg-teal-900/30 dark:text-teal-400 font-semibold">Live Rates</span>
+            <div className="bg-white rounded-sm overflow-hidden shadow-[0_2px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-shadow group flex flex-col h-full md:col-span-2 border-t-4 border-transparent hover:border-[#00a651]">
+              <div className="h-48 relative bg-gray-200">
+                <Image src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop" alt="Pricing" fill className="object-cover" />
+                <div className="absolute inset-0 bg-[#004b87]/20 group-hover:bg-transparent transition-colors"></div>
               </div>
-              <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-teal-600 transition-colors">Dynamic Pricing</h3>
-              <p className="text-gray-500 dark:text-gray-400 leading-relaxed flex-1">Set electricity rates manually, configure price thresholds, and monitor 24h price curves for optimal energy trading.</p>
-            </Link>
+              <div className="p-8 flex flex-col flex-1">
+                <h3 className="text-xl font-bold text-[#004b87] mb-3">Dynamic Pricing & Analytics</h3>
+                <p className="text-gray-600 mb-6 flex-1 text-sm leading-relaxed">
+                  Real-time tariff control center. Manually adjust electricity prices based on grid load, configure automatic threshold alerts, and visualize 24-hour demand curves.
+                </p>
+                <Link href="/pricing" className="text-[#00a651] font-bold text-sm uppercase tracking-wide flex items-center gap-1 group-hover:gap-2 transition-all">
+                  View Dashboard <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Split About Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="flex flex-col md:flex-row gap-16 items-center">
+            {/* Text Side */}
+            <div className="flex-1">
+              <h3 className="text-[#00a651] font-bold tracking-widest uppercase mb-3 text-sm">About Iron Will</h3>
+              <h2 className="text-4xl font-bold text-[#004b87] mb-6 leading-tight">Empowering a Carbon-Free Grid</h2>
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                We are building the intelligence layer for the modern electricity grid. By integrating smart sensors, IoT gateways, and robust MQTT pipelines, we provide unparalleled visibility into decentralized energy generation.
+              </p>
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-6 h-6 text-[#00a651] shrink-0" />
+                  <span className="text-gray-700 font-medium">100% Secure MQTT over TLS infrastructure</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-6 h-6 text-[#00a651] shrink-0" />
+                  <span className="text-gray-700 font-medium">Real-time hardware integration with ESP32 & LoRa</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="w-6 h-6 text-[#00a651] shrink-0" />
+                  <span className="text-gray-700 font-medium">Role-Based Access Control (RBAC) via Supabase Auth</span>
+                </li>
+              </ul>
+              <Link href="/register" className="inline-flex bg-[#004b87] hover:bg-[#003865] text-white px-8 py-3 font-bold uppercase tracking-wide transition-colors rounded-sm">
+                Request Demo Access
+              </Link>
+            </div>
+            {/* Image Side */}
+            <div className="flex-1 relative h-[500px] w-full rounded-sm overflow-hidden shadow-xl">
+              <Image src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?q=80&w=1974&auto=format&fit=crop" alt="Corporate" fill className="object-cover" />
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <section className="text-center pb-8">
-        <p className="text-sm text-gray-400">
-          Built by <span className="font-semibold text-[var(--foreground)]">Team Iron Will</span> · Smart India Hackathon 2026
+      <footer className="bg-[#004b87] py-12 text-center text-white/80">
+        <p className="text-sm font-medium tracking-wide">
+          BUILT FOR SMART INDIA HACKATHON 2026 BY <span className="text-white font-bold">TEAM IRON WILL</span>
         </p>
-      </section>
+      </footer>
     </div>
   );
 }
