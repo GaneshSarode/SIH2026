@@ -1,7 +1,7 @@
 "use client";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-export default function NodeChart({ history }: { history: { time: string; consumption: number }[] }) {
+export default function HomeChart({ history }: { history: { time: string; consumption: number }[] }) {
   return (
     <div className="w-full h-64">
       <ResponsiveContainer width="100%" height="100%">
