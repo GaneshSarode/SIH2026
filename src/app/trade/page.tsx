@@ -8,7 +8,7 @@ export default async function TradePage() {
   const data = await getTradeData();
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 max-w-7xl mx-auto px-4 md:px-8 w-full py-8">
       <div className="flex items-center gap-4">
         <Link href="/" className="p-2 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] hover:bg-[var(--background)] transition-colors shadow-sm">
           <ArrowLeft className="w-5 h-5" />
