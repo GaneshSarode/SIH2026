@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Activity, Zap, Car, Globe, ShieldCheck, Leaf, TreePine, IndianRupee, ArrowRight, CheckCircle2 } from "lucide-react";
 import { getMicrogrids, getSecurityStatus } from "@/lib/mockData";
-import Image from "next/image";
 
 export default async function Home() {
   const microgrids = await getMicrogrids();
@@ -13,18 +12,16 @@ export default async function Home() {
   const treesEquivalent = Math.round(co2SavedToday / 22);
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#f8f9fa] pt-20">
+    <div className="flex flex-col min-h-screen bg-[#f8f9fa]">
       
       {/* 1. Waaree Hero Slider Style */}
       <section className="relative w-full h-[600px] bg-gray-900 overflow-hidden">
         {/* Background Image Placeholder */}
         <div className="absolute inset-0 z-0">
-          <Image 
+          <img 
             src="https://images.unsplash.com/photo-1509391366360-1e97d5259d52?q=80&w=2070&auto=format&fit=crop" 
             alt="Solar Panels" 
-            fill 
-            className="object-cover opacity-80"
-            priority
+            className="absolute inset-0 w-full h-full object-cover opacity-80"
           />
         </div>
         
@@ -82,7 +79,7 @@ export default async function Home() {
             {/* Microgrids Card */}
             <div className="bg-white rounded-sm overflow-hidden shadow-[0_2px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-shadow group flex flex-col h-full border-t-4 border-transparent hover:border-[#00a651]">
               <div className="h-48 relative bg-gray-200">
-                <Image src="https://images.unsplash.com/photo-1548613052-094191316b23?q=80&w=2070&auto=format&fit=crop" alt="Microgrids" fill className="object-cover" />
+                <img src="https://images.unsplash.com/photo-1548613052-094191316b23?q=80&w=2070&auto=format&fit=crop" alt="Microgrids" className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-[#004b87]/20 group-hover:bg-transparent transition-colors"></div>
               </div>
               <div className="p-8 flex flex-col flex-1">
@@ -99,7 +96,7 @@ export default async function Home() {
             {/* BESS Card */}
             <div className="bg-white rounded-sm overflow-hidden shadow-[0_2px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-shadow group flex flex-col h-full border-t-4 border-transparent hover:border-[#00a651]">
               <div className="h-48 relative bg-gray-200">
-                <Image src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=2072&auto=format&fit=crop" alt="BESS" fill className="object-cover" />
+                <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=2072&auto=format&fit=crop" alt="BESS" className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-[#004b87]/20 group-hover:bg-transparent transition-colors"></div>
               </div>
               <div className="p-8 flex flex-col flex-1">
@@ -116,7 +113,7 @@ export default async function Home() {
             {/* V2G Card */}
             <div className="bg-white rounded-sm overflow-hidden shadow-[0_2px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-shadow group flex flex-col h-full border-t-4 border-transparent hover:border-[#00a651]">
               <div className="h-48 relative bg-gray-200">
-                <Image src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=2072&auto=format&fit=crop" alt="V2G" fill className="object-cover" />
+                <img src="https://images.unsplash.com/photo-1593910300188-d21051fa69ff?q=80&w=2072&auto=format&fit=crop" alt="V2G" className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-[#004b87]/20 group-hover:bg-transparent transition-colors"></div>
               </div>
               <div className="p-8 flex flex-col flex-1">
@@ -133,7 +130,7 @@ export default async function Home() {
             {/* International Trade */}
             <div className="bg-white rounded-sm overflow-hidden shadow-[0_2px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-shadow group flex flex-col h-full border-t-4 border-transparent hover:border-[#00a651]">
               <div className="h-48 relative bg-gray-200">
-                <Image src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop" alt="Trade" fill className="object-cover" />
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop" alt="Trade" className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-[#004b87]/20 group-hover:bg-transparent transition-colors"></div>
               </div>
               <div className="p-8 flex flex-col flex-1">
@@ -150,7 +147,7 @@ export default async function Home() {
             {/* Dynamic Pricing */}
             <div className="bg-white rounded-sm overflow-hidden shadow-[0_2px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-shadow group flex flex-col h-full md:col-span-2 border-t-4 border-transparent hover:border-[#00a651]">
               <div className="h-48 relative bg-gray-200">
-                <Image src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop" alt="Pricing" fill className="object-cover" />
+                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop" alt="Pricing" className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-[#004b87]/20 group-hover:bg-transparent transition-colors"></div>
               </div>
               <div className="p-8 flex flex-col flex-1">
@@ -199,7 +196,7 @@ export default async function Home() {
             </div>
             {/* Image Side */}
             <div className="flex-1 relative h-[500px] w-full rounded-sm overflow-hidden shadow-xl">
-              <Image src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?q=80&w=1974&auto=format&fit=crop" alt="Corporate" fill className="object-cover" />
+              <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?q=80&w=1974&auto=format&fit=crop" alt="Corporate" className="absolute inset-0 w-full h-full object-cover" />
             </div>
           </div>
         </div>
