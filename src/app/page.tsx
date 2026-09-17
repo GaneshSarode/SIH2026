@@ -19,7 +19,7 @@ export default async function Home() {
         {/* Background Image Placeholder */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1509391366360-1e97d5259d52?q=80&w=2070&auto=format&fit=crop" 
+            src="https://loremflickr.com/1600/900/solarpanel,grid/all" 
             alt="Solar Panels" 
             className="absolute inset-0 w-full h-full object-cover opacity-80"
           />
@@ -79,7 +79,7 @@ export default async function Home() {
             {/* Microgrids Card */}
             <div className="bg-white rounded-sm overflow-hidden shadow-[0_2px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-shadow group flex flex-col h-full border-t-4 border-transparent hover:border-[#00a651]">
               <div className="h-48 relative bg-gray-200">
-                <img src="https://images.unsplash.com/photo-1548613052-094191316b23?q=80&w=2070&auto=format&fit=crop" alt="Microgrids" className="absolute inset-0 w-full h-full object-cover" />
+                <img src="https://loremflickr.com/800/600/microgrid,solar/all" alt="Microgrids" className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-[#004b87]/20 group-hover:bg-transparent transition-colors"></div>
               </div>
               <div className="p-8 flex flex-col flex-1">
@@ -96,7 +96,7 @@ export default async function Home() {
             {/* BESS Card */}
             <div className="bg-white rounded-sm overflow-hidden shadow-[0_2px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-shadow group flex flex-col h-full border-t-4 border-transparent hover:border-[#00a651]">
               <div className="h-48 relative bg-gray-200">
-                <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=2072&auto=format&fit=crop" alt="BESS" className="absolute inset-0 w-full h-full object-cover" />
+                <img src="https://loremflickr.com/800/600/battery,storage/all" alt="BESS" className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-[#004b87]/20 group-hover:bg-transparent transition-colors"></div>
               </div>
               <div className="p-8 flex flex-col flex-1">
@@ -113,7 +113,7 @@ export default async function Home() {
             {/* V2G Card */}
             <div className="bg-white rounded-sm overflow-hidden shadow-[0_2px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-shadow group flex flex-col h-full border-t-4 border-transparent hover:border-[#00a651]">
               <div className="h-48 relative bg-gray-200">
-                <img src="https://images.unsplash.com/photo-1593910300188-d21051fa69ff?q=80&w=2072&auto=format&fit=crop" alt="V2G" className="absolute inset-0 w-full h-full object-cover" />
+                <img src="https://loremflickr.com/800/600/electriccar,charging/all" alt="V2G" className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-[#004b87]/20 group-hover:bg-transparent transition-colors"></div>
               </div>
               <div className="p-8 flex flex-col flex-1">
@@ -130,7 +130,7 @@ export default async function Home() {
             {/* International Trade */}
             <div className="bg-white rounded-sm overflow-hidden shadow-[0_2px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-shadow group flex flex-col h-full border-t-4 border-transparent hover:border-[#00a651]">
               <div className="h-48 relative bg-gray-200">
-                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop" alt="Trade" className="absolute inset-0 w-full h-full object-cover" />
+                <img src="https://loremflickr.com/800/600/powerline,transmission/all" alt="Trade" className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-[#004b87]/20 group-hover:bg-transparent transition-colors"></div>
               </div>
               <div className="p-8 flex flex-col flex-1">
@@ -147,7 +147,7 @@ export default async function Home() {
             {/* Dynamic Pricing */}
             <div className="bg-white rounded-sm overflow-hidden shadow-[0_2px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition-shadow group flex flex-col h-full md:col-span-2 border-t-4 border-transparent hover:border-[#00a651]">
               <div className="h-48 relative bg-gray-200">
-                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop" alt="Pricing" className="absolute inset-0 w-full h-full object-cover" />
+                <img src="https://loremflickr.com/800/600/chart,dashboard/all" alt="Pricing" className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-[#004b87]/20 group-hover:bg-transparent transition-colors"></div>
               </div>
               <div className="p-8 flex flex-col flex-1">
@@ -196,7 +196,7 @@ export default async function Home() {
             </div>
             {/* Image Side */}
             <div className="flex-1 relative h-[500px] w-full rounded-sm overflow-hidden shadow-xl">
-              <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?q=80&w=1974&auto=format&fit=crop" alt="Corporate" className="absolute inset-0 w-full h-full object-cover" />
+              <img src="https://loremflickr.com/800/600/server,technology/all" alt="Corporate" className="absolute inset-0 w-full h-full object-cover" />
             </div>
           </div>
         </div>
