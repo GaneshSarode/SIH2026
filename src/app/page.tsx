@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Activity, Zap, Car, Globe, ShieldCheck, Leaf, TreePine, IndianRupee, ArrowRight, CheckCircle2 } from "lucide-react";
 import { getMicrogrids, getSecurityStatus } from "@/lib/mockData";
+import HeroSlider from "@/components/HeroSlider";
 
 export default async function Home() {
   const microgrids = await getMicrogrids();
@@ -15,30 +16,7 @@ export default async function Home() {
     <div className="flex flex-col min-h-screen bg-[#f8f9fa]">
       
       {/* 1. Waaree Hero Slider Style */}
-      <section className="relative w-full h-[600px] bg-gray-900 overflow-hidden">
-        {/* Background Image Placeholder */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="/hero_earth_ecosystem.jpg" 
-            alt="GridWatch Intelligent Microgrid Ecosystem" 
-            className="absolute inset-0 w-full h-full object-cover opacity-80"
-          />
-        </div>
-        
-        {/* Waaree Signature Blue Text Box (Bottom Left) */}
-        <div className="absolute bottom-0 left-0 w-full md:w-[600px] bg-[#004b87] p-10 md:p-14 z-10 text-white">
-          <h2 className="text-[#00a651] font-bold tracking-widest uppercase mb-2 text-sm">GridWatch Platform</h2>
-          <h1 className="text-4xl md:text-5xl font-black mb-6 leading-[1.15] text-white">
-            Real-time telemetry and automated power quality compensation
-          </h1>
-          <p className="text-lg md:text-xl font-light text-gray-200 mb-8 max-w-lg leading-relaxed">
-            across microgrids, BESS, V2G, and cross-border power trade.
-          </p>
-          <Link href="/microgrids" className="inline-flex items-center gap-2 bg-[#00a651] hover:bg-[#008c44] text-white px-6 py-3 font-bold uppercase tracking-wide transition-colors rounded-sm">
-            Launch Platform <ArrowRight className="w-5 h-5" />
-          </Link>
-        </div>
-      </section>
+      <HeroSlider />
 
       {/* 2. Metrics Strip */}
       <section className="bg-white shadow-md z-20 relative border-b border-gray-200 py-8">
