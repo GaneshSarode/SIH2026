@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Activity, Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
+import { Activity, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { User } from "@supabase/supabase-js";
@@ -19,12 +18,11 @@ const navLinks = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [mounted, setMounted] = useState(false);
   const [user, setUser] = useState<User | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const supabase = createClient();
 
   useEffect(() => {
-    setMounted(true);
     const getUser = async () => {
       const { data } = await supabase.auth.getUser();
       setUser(data.user);
@@ -50,8 +48,8 @@ export default function Navbar() {
           <span className="text-2xl font-bold tracking-tight text-[#004b87] uppercase">GridWatch</span>
         </Link>
 
-        {/* Nav Links */}
-        <nav className="hidden md:flex items-center gap-8">
+        {/* Desktop Nav Links */}
+        <nav className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => {
             const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
             return (
@@ -68,8 +66,8 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* User Auth & Actions */}
-        <div className="flex items-center gap-4">
+        {/* Desktop User Auth */}
+        <div className="hidden lg:flex items-center gap-4">
           {user ? (
             <button
               onClick={async () => await supabase.auth.signOut()}
@@ -86,7 +84,57 @@ export default function Navbar() {
             </Link>
           )}
         </div>
+
+        {/* Mobile Menu Toggle */}
+        <button 
+          className="lg:hidden p-2 text-[#004b87]"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden absolute top-20 left-0 right-0 bg-white border-b border-gray-200 shadow-lg py-4 px-4 flex flex-col gap-4">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`text-base font-bold uppercase tracking-wide transition-colors py-2 ${
+                  isActive ? 'text-[#00a651]' : 'text-[#004b87] hover:text-[#00a651]'
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+          <div className="pt-4 border-t border-gray-100 flex flex-col gap-4">
+            {user ? (
+              <button
+                onClick={async () => {
+                  await supabase.auth.signOut();
+                  setMobileMenuOpen(false);
+                }}
+                className="text-left text-base font-bold text-red-600 hover:text-red-700 uppercase tracking-wide py-2"
+              >
+                Sign Out
+              </button>
+            ) : (
+              <Link
+                href="/login"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-center w-full px-6 py-3 bg-[#00a651] text-white text-base font-bold uppercase tracking-wide hover:bg-[#008c44] transition-colors rounded-sm"
+              >
+                Login
+              </Link>
+            )}
+          </div>
+        </div>
+      )}
     </header>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { Zap, ArrowLeft, CheckCircle2, AlertTriangle, Search, LogIn, UserPlus, X } from "lucide-react";
+import { Zap, ArrowLeft, CheckCircle2, AlertTriangle, Search, LogIn, UserPlus, X, ArrowRight } from "lucide-react";
 
 interface Microgrid {
   id: string;
@@ -102,8 +102,11 @@ export default function MicrogridsClient({ microgrids }: { microgrids: Microgrid
                   </span>
                 </div>
               </div>
-              <h3 className="text-xl font-semibold mb-1 group-hover:text-[var(--color-status-online)] transition-colors">{mg.id}</h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">{mg.name} · {mg.location}</p>
+              <div className="flex items-center justify-between mb-1">
+                <h3 className="text-xl font-semibold group-hover:text-[var(--color-status-online)] transition-colors">{mg.id}</h3>
+                <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-[var(--color-status-online)] group-hover:translate-x-1 transition-all" />
+              </div>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">{mg.name} - {mg.location}</p>
               <div className="grid grid-cols-3 gap-3 pt-4 border-t border-[var(--color-border)]">
                 <div className="flex flex-col">
                   <span className="text-xl font-bold">{mg.capacity_kw} <span className="text-sm font-normal text-gray-500">kW</span></span>

@@ -6,20 +6,20 @@ export default function HeroSlider() {
     <section className="relative w-full min-h-[calc(100vh-5rem)] bg-gradient-to-br from-[#f2fcf7] to-[#e2f5ec] overflow-hidden flex items-center">
       
       {/* Concentric rings background on the right */}
-      <div className="absolute right-0 md:right-[5%] top-1/2 -translate-y-1/2 w-[clamp(400px,40vw,900px)] h-[clamp(400px,40vw,900px)] pointer-events-none">
+      <div className="absolute right-0 md:right-[5%] top-1/2 -translate-y-1/2 w-[clamp(280px,40vw,900px)] h-[clamp(280px,40vw,900px)] pointer-events-none">
         <div className="absolute inset-0 rounded-full border-[1px] border-[#00a651]/20 scale-[0.6]"></div>
         <div className="absolute inset-0 rounded-full border-[1px] border-[#00a651]/15 scale-[0.8]"></div>
         <div className="absolute inset-0 rounded-full border-[1px] border-[#00a651]/10 scale-[1.0]"></div>
       </div>
 
-      <div className="mx-auto px-4 md:px-[clamp(1rem,3vw,4rem)] w-full max-w-[90vw] 2xl:max-w-[1600px] flex flex-col md:flex-row items-center justify-between relative z-10 h-full py-12 md:py-0">
+      <div className="mx-auto px-4 md:px-[clamp(1rem,3vw,4rem)] w-full max-w-[90vw] 2xl:max-w-[1600px] flex flex-col md:flex-row items-center justify-center md:justify-between gap-12 md:gap-0 relative z-10 h-full py-12 md:py-0">
         
         {/* Left Side: Text Content */}
-        <div className="w-full md:w-[55%] flex flex-col justify-center h-full pt-12 md:pt-0">
-          <h1 className="font-light text-gray-800 mb-[clamp(1rem,1.5vw,2.5rem)] leading-[1.15] text-[clamp(32px,3.5vw,64px)]">
+        <div className="w-full md:w-[55%] flex flex-col justify-center h-full pt-8 md:pt-0 text-center md:text-left items-center md:items-start">
+          <h1 className="font-light text-gray-800 mb-[clamp(1rem,1.5vw,2.5rem)] leading-[1.15] text-[clamp(28px,3.5vw,64px)]">
             Real-time telemetry and automated power quality compensation
           </h1>
-          <p className="text-gray-600 mb-[clamp(1.5rem,2vw,3rem)] max-w-[clamp(500px,35vw,700px)] leading-relaxed text-[clamp(16px,1.25vw,24px)]">
+          <p className="text-gray-600 mb-[clamp(1.5rem,2vw,3rem)] max-w-[clamp(300px,35vw,700px)] leading-relaxed text-[clamp(16px,1.25vw,24px)]">
             across microgrids, BESS, V2G, and cross-border power trade.
           </p>
           <div>
@@ -30,8 +30,8 @@ export default function HeroSlider() {
         </div>
 
         {/* Right Side: Static Rotating Earth */}
-        <div className="w-full md:w-[45%] absolute md:relative right-0 top-1/4 md:top-auto flex items-center justify-center pointer-events-none opacity-30 md:opacity-100">
-          <div className="relative w-[clamp(320px,28vw,600px)] h-[clamp(320px,28vw,600px)] flex-shrink-0">
+        <div className="w-full md:w-[45%] flex items-center justify-center pointer-events-none opacity-80 md:opacity-100">
+          <div className="relative w-[clamp(240px,28vw,600px)] h-[clamp(240px,28vw,600px)] flex-shrink-0">
             {/* Earth image cut in a circle and rotating slowly */}
             <div 
               className="w-full h-full rounded-full overflow-hidden"
