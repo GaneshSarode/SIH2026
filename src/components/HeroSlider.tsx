@@ -5,31 +5,26 @@ import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
   {
-    image: "/hero_earth_ecosystem.jpg",
     title: "Accelerating Global Energy Transition",
     subtitle: "Real-time telemetry and automated power quality compensation across microgrids, BESS, V2G, and cross-border power trade.",
     link: "/microgrids"
   },
   {
-    image: "/card-bess.jpg",
     title: "Intelligent Battery Energy Management",
     subtitle: "Optimize charge cycles and maintain grid stability with advanced HESS logic.",
     link: "/bess"
   },
   {
-    image: "/card-v2g.jpg",
     title: "Bidirectional Vehicle-to-Grid Integration",
     subtitle: "Turn electric vehicle fleets into dynamic power assets for grid resilience.",
     link: "/v2g"
   },
   {
-    image: "/card-trade.png",
     title: "International Renewable Energy Trading",
     subtitle: "Blockchain-verified cross-border power flow and settlement.",
     link: "/trade"
   },
   {
-    image: "/card-pricing.png",
     title: "Real-time Grid Economics & Pricing",
     subtitle: "AI-driven price optimization based on active demand.",
     link: "/pricing"
@@ -53,7 +48,7 @@ export default function HeroSlider() {
     <section className="relative w-full h-[600px] bg-gradient-to-br from-[#f2fcf7] to-[#e2f5ec] overflow-hidden flex items-center">
       
       {/* Concentric rings background on the right */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[800px] h-[800px] pointer-events-none">
+      <div className="absolute right-0 md:right-[5%] top-1/2 -translate-y-1/2 w-[600px] md:w-[800px] h-[600px] md:h-[800px] pointer-events-none">
         <div className="absolute inset-0 rounded-full border-[1px] border-[#00a651]/20 scale-[0.6]"></div>
         <div className="absolute inset-0 rounded-full border-[1px] border-[#00a651]/15 scale-[0.8]"></div>
         <div className="absolute inset-0 rounded-full border-[1px] border-[#00a651]/10 scale-[1.0]"></div>
@@ -104,26 +99,21 @@ export default function HeroSlider() {
           </div>
         </div>
 
-        {/* Right Side: Rotating Earth / Images */}
-        <div className="w-full md:w-1/2 h-full absolute md:relative right-[-20%] md:right-[-10%] top-20 md:top-0 opacity-30 md:opacity-100 flex items-center justify-center pointer-events-none">
-          {slides.map((slide, index) => (
-             <div 
-              key={index}
-              className={`absolute right-0 w-[600px] h-[600px] transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
-             >
-               {/* Earth image cut in a circle and rotating slowly */}
-               <div 
-                 className="w-full h-full rounded-full overflow-hidden shadow-2xl"
-                 style={{ animation: 'spin 60s linear infinite' }}
-               >
-                 <img 
-                   src={slide.image} 
-                   alt={slide.title} 
-                   className="w-full h-full object-cover scale-110"
-                 />
-               </div>
-             </div>
-          ))}
+        {/* Right Side: Static Rotating Earth */}
+        <div className="w-full md:w-1/2 absolute md:relative right-[-30%] md:right-[-5%] top-1/4 md:top-auto flex items-center justify-center pointer-events-none opacity-40 md:opacity-100">
+          <div className="relative w-[400px] md:w-[600px] h-[400px] md:h-[600px]">
+            {/* Earth image cut in a circle and rotating slowly */}
+            <div 
+              className="w-full h-full rounded-full overflow-hidden shadow-2xl"
+              style={{ animation: 'spin 60s linear infinite' }}
+            >
+              <img 
+                src="/hero_earth_ecosystem.jpg" 
+                alt="GridWatch Earth Ecosystem" 
+                className="w-full h-full object-cover scale-110"
+              />
+            </div>
+          </div>
         </div>
 
       </div>
