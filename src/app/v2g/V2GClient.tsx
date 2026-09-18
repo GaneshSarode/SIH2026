@@ -108,7 +108,7 @@ export default function V2GClient({ data: initialData }: { data: V2GOverview }) 
           <div className="text-center py-12 text-gray-500">No vehicles found</div>
         ) : (
           filtered.map((session) => (
-            <Link key={session.vehicleId} href="#" className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-6 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] shadow-sm hover:border-purple-500 transition-all gap-4">
+            <Link key={session.vehicleId} href={`/v2g/${session.vehicleId}`} className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-6 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] shadow-sm hover:border-purple-500 transition-all gap-4">
               <div className="flex items-center gap-4">
                 <div className="p-3 rounded-full bg-gray-100">
                   <Car className="w-6 h-6 text-gray-600" />

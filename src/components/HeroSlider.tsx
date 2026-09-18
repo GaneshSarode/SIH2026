@@ -3,35 +3,35 @@ import { ArrowRight } from "lucide-react";
 
 export default function HeroSlider() {
   return (
-    <section className="relative w-full h-[600px] bg-gradient-to-br from-[#f2fcf7] to-[#e2f5ec] overflow-hidden flex items-center">
+    <section className="relative w-full min-h-[calc(100vh-5rem)] bg-gradient-to-br from-[#f2fcf7] to-[#e2f5ec] overflow-hidden flex items-center">
       
       {/* Concentric rings background on the right */}
-      <div className="absolute right-0 md:right-[5%] top-1/2 -translate-y-1/2 w-[600px] md:w-[800px] h-[600px] md:h-[800px] pointer-events-none">
+      <div className="absolute right-0 md:right-[5%] top-1/2 -translate-y-1/2 w-[clamp(400px,40vw,900px)] h-[clamp(400px,40vw,900px)] pointer-events-none">
         <div className="absolute inset-0 rounded-full border-[1px] border-[#00a651]/20 scale-[0.6]"></div>
         <div className="absolute inset-0 rounded-full border-[1px] border-[#00a651]/15 scale-[0.8]"></div>
         <div className="absolute inset-0 rounded-full border-[1px] border-[#00a651]/10 scale-[1.0]"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8 w-full flex flex-col md:flex-row items-center justify-between relative z-10 h-full">
+      <div className="mx-auto px-4 md:px-[clamp(1rem,3vw,4rem)] w-full max-w-[90vw] 2xl:max-w-[1600px] flex flex-col md:flex-row items-center justify-between relative z-10 h-full py-12 md:py-0">
         
         {/* Left Side: Text Content */}
         <div className="w-full md:w-[55%] flex flex-col justify-center h-full pt-12 md:pt-0">
-          <h1 className="text-4xl md:text-5xl lg:text-[54px] font-light text-gray-800 mb-6 leading-[1.15]">
+          <h1 className="font-light text-gray-800 mb-[clamp(1rem,1.5vw,2.5rem)] leading-[1.15] text-[clamp(32px,3.5vw,64px)]">
             Real-time telemetry and automated power quality compensation
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-lg leading-relaxed">
+          <p className="text-gray-600 mb-[clamp(1.5rem,2vw,3rem)] max-w-[clamp(500px,35vw,700px)] leading-relaxed text-[clamp(16px,1.25vw,24px)]">
             across microgrids, BESS, V2G, and cross-border power trade.
           </p>
           <div>
-            <Link href="/microgrids" className="inline-flex items-center gap-2 bg-[#00a651] hover:bg-[#008c44] text-white px-8 py-3.5 rounded-full font-bold transition-all shadow-[0_4px_14px_rgba(0,166,81,0.4)] hover:shadow-[0_6px_20px_rgba(0,166,81,0.6)]">
-              Explore More <ArrowRight className="w-5 h-5" />
+            <Link href="/microgrids" className="inline-flex items-center gap-2 bg-[#00a651] hover:bg-[#008c44] text-white px-[clamp(1.5rem,2vw,2.5rem)] py-[clamp(0.75rem,1vw,1.25rem)] rounded-full font-bold transition-all shadow-[0_4px_14px_rgba(0,166,81,0.4)] hover:shadow-[0_6px_20px_rgba(0,166,81,0.6)] text-[clamp(14px,1vw,18px)]">
+              Explore More <ArrowRight className="w-[clamp(1rem,1.25vw,1.5rem)] h-[clamp(1rem,1.25vw,1.5rem)]" />
             </Link>
           </div>
         </div>
 
         {/* Right Side: Static Rotating Earth */}
-        <div className="w-full md:w-[45%] absolute md:relative right-0 md:right-0 top-1/4 md:top-auto flex items-center justify-center pointer-events-none opacity-30 md:opacity-100">
-          <div className="relative w-[350px] md:w-[480px] h-[350px] md:h-[480px]">
+        <div className="w-full md:w-[45%] absolute md:relative right-0 top-1/4 md:top-auto flex items-center justify-center pointer-events-none opacity-30 md:opacity-100">
+          <div className="relative w-[clamp(320px,28vw,600px)] h-[clamp(320px,28vw,600px)] flex-shrink-0">
             {/* Earth image cut in a circle and rotating slowly */}
             <div 
               className="w-full h-full rounded-full overflow-hidden"

@@ -263,6 +263,56 @@ export async function getV2GData(): Promise<V2GOverview> {
   };
 }
 
+export interface EVTelemetry {
+  vehicleId: string;
+  vehicleName: string;
+  soc: number;
+  soh: number;
+  voltage: number;
+  current: number;
+  temperature: number;
+  mode: "charging" | "discharging" | "idle";
+  powerFlow: number;
+  targetSoC: number;
+  departureTime: string;
+  history: { time: string; power: number; soc: number }[];
+}
+
+export async function getEVTelemetry(id: string): Promise<EVTelemetry | undefined> {
+  const data = await getV2GData();
+  const session = data.sessions.find(s => s.vehicleId === id);
+  if (!session) return undefined;
+
+  const history = [];
+  let currentSoc = session.batteryLevel;
+  for (let i = 0; i <= 24; i += 2) {
+    const hourString = `${i.toString().padStart(2, '0')}:00`;
+    let power = 0;
+    if (session.mode === 'charging') power = -(Math.random() * 3 + 4);
+    else if (session.mode === 'discharging') power = Math.random() * 5 + 2;
+    history.push({ 
+      time: hourString, 
+      power: Number(power.toFixed(1)),
+      soc: Math.round(currentSoc) 
+    });
+  }
+
+  return {
+    vehicleId: session.vehicleId,
+    vehicleName: session.vehicleName,
+    soc: session.batteryLevel,
+    soh: 96.5,
+    voltage: 395.2,
+    current: session.powerFlow > 0 ? (session.powerFlow * 1000) / 395.2 : 0,
+    temperature: 32.4,
+    mode: session.mode,
+    powerFlow: session.powerFlow,
+    targetSoC: 90,
+    departureTime: "18:00 PM",
+    history
+  };
+}
+
 // ──────────────────────────────────────
 // International Trade of Power
 // ──────────────────────────────────────

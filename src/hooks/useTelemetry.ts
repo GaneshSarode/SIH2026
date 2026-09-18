@@ -17,8 +17,9 @@ export function useTelemetry<T extends Record<string, any>>(initialData: T): T {
         const newData = { ...prev };
         
         // Apply normal random jitter to all numeric fields
+        const excludedKeys = ['connectedEVs', 'home_count', 'capacity', 'capacity_kw', 'cycles', 'activeNodes', 'totalCapacity', 'targetSoC'];
         for (const key in newData) {
-          if (typeof newData[key] === 'number') {
+          if (typeof newData[key] === 'number' && !excludedKeys.includes(key)) {
             if (key === 'soc' || key === 'health' || key === 'thd') {
               newData[key] = Math.max(0, Math.min(100, addJitter(newData[key] as number, 1))) as any;
             } else {
