@@ -19,8 +19,8 @@ export default async function Home() {
         {/* Background Image Placeholder */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="/hero-solar.jpg" 
-            alt="Solar Panels" 
+            src="/hero_earth_ecosystem.jpg" 
+            alt="GridWatch Intelligent Microgrid Ecosystem" 
             className="absolute inset-0 w-full h-full object-cover opacity-80"
           />
         </div>
