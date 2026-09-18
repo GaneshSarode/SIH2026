@@ -30,17 +30,17 @@ export default function HeroSlider() {
         </div>
 
         {/* Right Side: Static Rotating Earth */}
-        <div className="w-full md:w-[45%] absolute md:relative right-[-10%] md:right-[2%] top-1/4 md:top-auto flex items-center justify-center pointer-events-none opacity-40 md:opacity-100">
-          <div className="relative w-[400px] md:w-[600px] h-[400px] md:h-[600px]">
+        <div className="w-full md:w-[45%] absolute md:relative right-0 md:right-0 top-1/4 md:top-auto flex items-center justify-center pointer-events-none opacity-30 md:opacity-100">
+          <div className="relative w-[350px] md:w-[480px] h-[350px] md:h-[480px]">
             {/* Earth image cut in a circle and rotating slowly */}
             <div 
-              className="w-full h-full rounded-full overflow-hidden shadow-2xl"
-              style={{ animation: 'spin 60s linear infinite' }}
+              className="w-full h-full rounded-full overflow-hidden"
+              style={{ animation: 'spin 60s linear infinite', boxShadow: '0 0 60px rgba(0,166,81,0.15)' }}
             >
               <img 
                 src="/india-earth.jpg" 
                 alt="GridWatch Earth Ecosystem" 
-                className="w-full h-full object-cover scale-110"
+                className="w-full h-full object-cover"
               />
             </div>
           </div>
