@@ -100,7 +100,7 @@ export default function HeroSlider() {
 
         {/* Right Side: Static Rotating Earth */}
         <div className="w-full md:w-[45%] flex items-center justify-center pointer-events-none opacity-80 md:opacity-100">
-          <div className="relative w-[clamp(240px,28vw,600px)] h-[clamp(240px,28vw,600px)] flex-shrink-0">
+          <div className="relative w-[clamp(260px,38vw,750px)] h-[clamp(260px,38vw,750px)] flex-shrink-0">
             {/* Earth image cut in a circle and rotating slowly */}
             <div 
               className="w-full h-full rounded-full overflow-hidden"
