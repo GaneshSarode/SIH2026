@@ -1,7 +1,5 @@
-import { getBESSData } from "@/lib/mockData";
-import BESSClient from "./BESSClient";
+import BESSListClient from "./BESSListClient";
 
-export default async function BESSPage() {
-  const data = await getBESSData();
-  return <BESSClient data={data} />;
+export default function BESSPage() {
+  return <BESSListClient />;
 }
