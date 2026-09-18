@@ -28,14 +28,14 @@ export default async function Home() {
         {/* Waaree Signature Blue Text Box (Bottom Left) */}
         <div className="absolute bottom-0 left-0 w-full md:w-[600px] bg-[#004b87] p-10 md:p-14 z-10 text-white">
           <h2 className="text-[#00a651] font-bold tracking-widest uppercase mb-2 text-sm">GridWatch Platform</h2>
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
-            Pioneering The Future of Clean Energy Networks
+          <h1 className="text-4xl md:text-5xl font-black mb-6 leading-[1.15] text-white">
+            Real-time telemetry and automated power quality compensation
           </h1>
-          <p className="text-gray-200 mb-8 max-w-md">
-            Seamlessly monitor, manage, and trade renewable energy across international borders with our military-grade encrypted platform.
+          <p className="text-lg md:text-xl font-light text-gray-200 mb-8 max-w-lg leading-relaxed">
+            across microgrids, BESS, V2G, and cross-border power trade.
           </p>
           <Link href="/microgrids" className="inline-flex items-center gap-2 bg-[#00a651] hover:bg-[#008c44] text-white px-6 py-3 font-bold uppercase tracking-wide transition-colors rounded-sm">
-            Explore Solutions <ArrowRight className="w-5 h-5" />
+            Launch Platform <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
       </section>
@@ -169,9 +169,18 @@ export default async function Home() {
 
       {/* Footer */}
       <footer className="bg-[#004b87] py-12 text-center text-white/80">
-        <p className="text-sm font-medium tracking-wide">
+        <p className="text-sm font-medium tracking-wide mb-4">
           BUILT FOR SMART INDIA HACKATHON 2026 BY <span className="text-white font-bold">TEAM IRON WILL</span>
         </p>
+        <div className="max-w-4xl mx-auto text-xs text-white/60 px-4 flex flex-wrap justify-center gap-x-4 gap-y-2">
+          <span><strong>PS Coverage Mapping:</strong></span>
+          <span>Generation & Microgrids → <Link href="/microgrids" className="hover:text-white underline">/microgrids</Link></span>
+          <span>BESS → <Link href="/bess" className="hover:text-white underline">/bess</Link></span>
+          <span>V2G → <Link href="/v2g" className="hover:text-white underline">/v2g</Link></span>
+          <span>Power Quality → <Link href="/microgrids/M1" className="hover:text-white underline">Dashboard</Link></span>
+          <span>Intl Trade → <Link href="/trade" className="hover:text-white underline">/trade</Link></span>
+          <span>Power Mgmt → <Link href="/pricing" className="hover:text-white underline">/pricing</Link></span>
+        </div>
       </footer>
     </div>
   );

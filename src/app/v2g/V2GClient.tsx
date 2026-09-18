@@ -1,7 +1,9 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Car, BatteryCharging, Plug, ArrowUpDown, Search } from "lucide-react";
+import { ArrowLeft, Car, BatteryCharging, Plug, ArrowUpDown, Search, Zap } from "lucide-react";
+import { useTelemetry } from "@/hooks/useTelemetry";
+import { useDemoStore } from "@/lib/store";
 
 interface V2GSession {
   vehicleId: string;
@@ -19,10 +21,27 @@ interface V2GOverview {
   sessions: V2GSession[];
 }
 
-export default function V2GClient({ data }: { data: V2GOverview }) {
+export default function V2GClient({ data: initialData }: { data: V2GOverview }) {
   const [search, setSearch] = useState("");
+  const data = useTelemetry(initialData);
+  const { activeScenario, scenarioPhase } = useDemoStore();
+  const isEvResponse = activeScenario === "EV_RESPONSE";
 
-  const filtered = data.sessions.filter(
+  // Scenario Override: Switch all "idle" EVs to "discharging"
+  let sessions = data.sessions;
+  let netFlow = data.netFlowToGrid;
+  
+  if (isEvResponse && (scenarioPhase === "detecting" || scenarioPhase === "responding")) {
+    sessions = sessions.map(s => {
+      if (s.mode === "idle" || s.mode === "charging") {
+        return { ...s, mode: "discharging", powerFlow: 7.2 };
+      }
+      return s;
+    });
+    netFlow = sessions.reduce((acc, s) => acc + (s.mode === "discharging" ? s.powerFlow : (s.mode === "charging" ? -s.powerFlow : 0)), 0);
+  }
+
+  const filtered = sessions.filter(
     (s) =>
       s.vehicleId.toLowerCase().includes(search.toLowerCase()) ||
       s.vehicleName.toLowerCase().includes(search.toLowerCase())
@@ -36,9 +55,21 @@ export default function V2GClient({ data }: { data: V2GOverview }) {
         </Link>
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Vehicle-to-Grid (V2G)</h1>
-          <p className="text-gray-500 dark:text-gray-400">Bidirectional EV power flow monitoring</p>
+          <p className="text-gray-500">Bidirectional EV power flow monitoring</p>
         </div>
       </div>
+
+      {isEvResponse && (
+        <div className="bg-purple-100 border border-purple-300 p-4 rounded-xl flex items-center justify-between shadow-sm animate-pulse">
+          <div className="flex items-center gap-3">
+            <Zap className="w-6 h-6 text-purple-600" />
+            <div>
+              <h3 className="font-bold text-purple-900">Grid Demand Peak Detected</h3>
+              <p className="text-sm text-purple-700">All idle fleet EVs commanded to discharge back to grid.</p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -49,12 +80,12 @@ export default function V2GClient({ data }: { data: V2GOverview }) {
         </div>
         <div className="p-6 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] shadow-sm text-center">
           <BatteryCharging className="w-8 h-8 mx-auto mb-3 text-purple-500" />
-          <span className="text-4xl font-bold block">{data.totalCapacity}</span>
+          <span className="text-4xl font-bold block">{data.totalCapacity.toFixed(1)}</span>
           <span className="text-sm text-gray-500 mt-1 block">kWh Total Capacity</span>
         </div>
         <div className="p-6 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] shadow-sm text-center">
           <ArrowUpDown className="w-8 h-8 mx-auto mb-3 text-[var(--color-status-online)]" />
-          <span className="text-4xl font-bold text-[var(--color-status-online)] block">{data.netFlowToGrid}</span>
+          <span className="text-4xl font-bold text-[var(--color-status-online)] block">{netFlow.toFixed(1)}</span>
           <span className="text-sm text-gray-500 mt-1 block">kW Net to Grid</span>
         </div>
       </div>
@@ -71,48 +102,46 @@ export default function V2GClient({ data }: { data: V2GOverview }) {
         />
       </div>
 
-      {/* Active Sessions */}
-      <section>
-        <h2 className="text-2xl font-semibold tracking-tight mb-4">Active Sessions</h2>
-        <div className="flex flex-col gap-3">
-          {filtered.length === 0 ? (
-            <div className="text-center py-12 text-gray-500">No EV found matching &quot;{search}&quot;</div>
-          ) : (
-            filtered.map((session) => {
-              const isDischarging = session.mode === "discharging";
-              const isCharging = session.mode === "charging";
-              return (
-                <div key={session.vehicleId} className="flex items-center justify-between p-5 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] shadow-sm">
-                  <div className="flex items-center gap-5">
-                    <div className={`p-2.5 rounded-lg ${isDischarging ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400' : isCharging ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400' : 'bg-gray-100 dark:bg-gray-800 text-gray-500'}`}>
-                      <Plug className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="font-semibold">{session.vehicleName}</p>
-                      <p className="text-sm text-gray-500">{session.vehicleId} · Connected since {session.connectedSince}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-8">
-                    <div className="text-right">
-                      <p className="text-sm text-gray-500">Battery</p>
-                      <p className="font-semibold">{session.batteryLevel}%</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-sm text-gray-500">Power</p>
-                      <p className={`font-semibold ${isDischarging ? 'text-[var(--color-status-online)]' : isCharging ? 'text-blue-500' : 'text-gray-500'}`}>
-                        {isDischarging ? '+' : isCharging ? '-' : ''}{session.powerFlow} kW
-                      </p>
-                    </div>
-                    <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${isDischarging ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : isCharging ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' : 'bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400'}`}>
-                      {session.mode.charAt(0).toUpperCase() + session.mode.slice(1)}
-                    </span>
-                  </div>
+      {/* EV Sessions List */}
+      <div className="flex flex-col gap-4">
+        {filtered.length === 0 ? (
+          <div className="text-center py-12 text-gray-500">No vehicles found</div>
+        ) : (
+          filtered.map((session) => (
+            <Link key={session.vehicleId} href="#" className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-6 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] shadow-sm hover:border-purple-500 transition-all gap-4">
+              <div className="flex items-center gap-4">
+                <div className="p-3 rounded-full bg-gray-100">
+                  <Car className="w-6 h-6 text-gray-600" />
                 </div>
-              );
-            })
-          )}
-        </div>
-      </section>
+                <div>
+                  <h3 className="font-bold text-lg">{session.vehicleId}</h3>
+                  <p className="text-sm text-gray-500">{session.vehicleName}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-8 w-full sm:w-auto justify-between sm:justify-end">
+                <div className="flex flex-col items-center">
+                  <span className="font-mono font-bold">{session.batteryLevel.toFixed(1)}%</span>
+                  <span className="text-xs text-gray-500">Charge</span>
+                </div>
+                <div className="flex flex-col items-center min-w-[80px]">
+                  <span className="font-mono font-bold">{session.powerFlow.toFixed(1)} kW</span>
+                  <span className="text-xs text-gray-500">Flow</span>
+                </div>
+                <div className={`px-3 py-1.5 rounded-lg text-sm font-semibold flex items-center gap-2 ${
+                  session.mode === "charging" 
+                    ? "bg-blue-100 text-blue-700" 
+                    : session.mode === "discharging"
+                      ? "bg-green-100 text-green-700"
+                      : "bg-gray-100 text-gray-600"
+                }`}>
+                  <Plug className="w-4 h-4" />
+                  {session.mode.charAt(0).toUpperCase() + session.mode.slice(1)}
+                </div>
+              </div>
+            </Link>
+          ))
+        )}
+      </div>
     </div>
   );
 }
