@@ -3,6 +3,16 @@
 -- Run this in Supabase SQL Editor
 -- ============================================
 
+-- Clean slate: Drop existing tables to avoid conflict and schema mismatches
+DROP TABLE IF EXISTS sensor_readings CASCADE;
+DROP TABLE IF EXISTS homes CASCADE;
+DROP TABLE IF EXISTS microgrids CASCADE;
+DROP TABLE IF EXISTS bess_readings CASCADE;
+DROP TABLE IF EXISTS v2g_sessions CASCADE;
+DROP TABLE IF EXISTS trade_records CASCADE;
+DROP TABLE IF EXISTS security_audit_log CASCADE;
+DROP TABLE IF EXISTS user_profiles CASCADE;
+
 -- Microgrids
 CREATE TABLE microgrids (
   id TEXT PRIMARY KEY,
