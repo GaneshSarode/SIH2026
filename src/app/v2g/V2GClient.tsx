@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Car, BatteryCharging, Plug, ArrowUpDown, Search, Zap } from "lucide-react";
+import { ArrowLeft, Car, BatteryCharging, Plug, ArrowUpDown, Search, Zap, ArrowRight } from "lucide-react";
 import { useTelemetry } from "@/hooks/useTelemetry";
 import { useDemoStore } from "@/lib/store";
 
@@ -108,17 +108,17 @@ export default function V2GClient({ data: initialData }: { data: V2GOverview }) 
           <div className="text-center py-12 text-gray-500">No vehicles found</div>
         ) : (
           filtered.map((session) => (
-            <Link key={session.vehicleId} href={`/v2g/${session.vehicleId}`} className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-6 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] shadow-sm hover:border-purple-500 transition-all gap-4">
+            <Link key={session.vehicleId} href={`/v2g/${session.vehicleId}`} className="group flex flex-col sm:flex-row items-start sm:items-center justify-between p-6 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] shadow-sm hover:border-purple-500 transition-all gap-4">
               <div className="flex items-center gap-4">
                 <div className="p-3 rounded-full bg-gray-100">
-                  <Car className="w-6 h-6 text-gray-600" />
+                  <Car className="w-6 h-6 text-gray-600 group-hover:text-purple-500 transition-colors" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg">{session.vehicleId}</h3>
+                  <h3 className="font-bold text-lg group-hover:text-purple-500 transition-colors">{session.vehicleId}</h3>
                   <p className="text-sm text-gray-500">{session.vehicleName}</p>
                 </div>
               </div>
-              <div className="flex items-center gap-8 w-full sm:w-auto justify-between sm:justify-end">
+              <div className="flex items-center gap-4 sm:gap-8 w-full sm:w-auto justify-between sm:justify-end">
                 <div className="flex flex-col items-center">
                   <span className="font-mono font-bold">{session.batteryLevel.toFixed(1)}%</span>
                   <span className="text-xs text-gray-500">Charge</span>
@@ -137,6 +137,7 @@ export default function V2GClient({ data: initialData }: { data: V2GOverview }) 
                   <Plug className="w-4 h-4" />
                   {session.mode.charAt(0).toUpperCase() + session.mode.slice(1)}
                 </div>
+                <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-purple-500 group-hover:translate-x-1 transition-all hidden sm:block" />
               </div>
             </Link>
           ))

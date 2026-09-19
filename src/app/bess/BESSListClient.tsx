@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Battery, Search, Activity, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, Battery, Search, Activity, CheckCircle2, ArrowRight } from "lucide-react";
 
 export default function BESSListClient() {
   const [search, setSearch] = useState("");
@@ -62,7 +62,10 @@ export default function BESSListClient() {
                   <span className="text-xs font-medium text-[var(--color-status-online)]">Online</span>
                 </div>
               </div>
-              <h3 className="text-xl font-semibold mb-1 group-hover:text-blue-500 transition-colors">{unit.id}</h3>
+              <div className="flex items-center justify-between mb-1">
+                <h3 className="text-xl font-semibold group-hover:text-blue-500 transition-colors">{unit.id}</h3>
+                <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
+              </div>
               <p className="text-sm text-gray-500 mb-4">{unit.location}</p>
               <div className="pt-4 border-t border-[var(--color-border)]">
                 <div className="flex flex-col">
