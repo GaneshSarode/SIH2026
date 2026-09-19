@@ -97,6 +97,14 @@ CREATE TABLE security_audit_log (
 
 CREATE INDEX idx_audit_time ON security_audit_log(created_at DESC);
 
+-- Operator Profiles (for RLS mapping)
+CREATE TABLE user_profiles (
+  id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+  role TEXT DEFAULT 'operator' CHECK (role IN ('admin', 'operator')),
+  assigned_resource_id TEXT, -- e.g. 'M1'
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
 -- ============================================
 -- Seed data (matches our current mock data)
 -- ============================================
