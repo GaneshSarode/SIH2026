@@ -17,10 +17,12 @@ export default function MicrogridsClient({ microgrids }: { microgrids: Microgrid
   const [search, setSearch] = useState("");
   const [showAuth, setShowAuth] = useState(false);
   const [authMode, setAuthMode] = useState<"login" | "register">("login");
-  const [authForm, setAuthForm] = useState({ microgridId: "", password: "", name: "", location: "" });
+  const [authForm, setAuthForm] = useState({ microgridId: "", password: "", name: "", location: "", capacity: "", generation: "" });
   const [authSuccess, setAuthSuccess] = useState("");
 
-  const filtered = microgrids.filter(
+  const [localMicrogrids, setLocalMicrogrids] = useState<Microgrid[]>(microgrids);
+
+  const filtered = localMicrogrids.filter(
     (mg) =>
       mg.id.toLowerCase().includes(search.toLowerCase()) ||
       mg.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -32,12 +34,24 @@ export default function MicrogridsClient({ microgrids }: { microgrids: Microgrid
     if (authMode === "login") {
       setAuthSuccess(`Logged in to ${authForm.microgridId} successfully`);
     } else {
+      // Create the new simulated microgrid
+      const newId = `M${localMicrogrids.length + 1}`;
+      const newMicrogrid: Microgrid = {
+        id: newId,
+        name: authForm.name || newId,
+        location: authForm.location || "Custom Location",
+        capacity_kw: Number(authForm.capacity) || 0,
+        current_generation: Number(authForm.generation) || 0,
+        home_count: 0,
+        status: "online"
+      };
+      setLocalMicrogrids([...localMicrogrids, newMicrogrid]);
       setAuthSuccess(`Microgrid "${authForm.name}" registered successfully`);
     }
     setTimeout(() => {
       setShowAuth(false);
       setAuthSuccess("");
-      setAuthForm({ microgridId: "", password: "", name: "", location: "" });
+      setAuthForm({ microgridId: "", password: "", name: "", location: "", capacity: "", generation: "" });
     }, 2000);
   };
 
@@ -165,21 +179,42 @@ export default function MicrogridsClient({ microgrids }: { microgrids: Microgrid
                   </>
                 ) : (
                   <>
-                    <div>
-                      <label className="text-sm text-gray-500 mb-1 block">Microgrid Name</label>
-                      <input
-                        type="text" required placeholder="e.g. Microgrid Delta"
-                        value={authForm.name} onChange={(e) => setAuthForm({ ...authForm, name: e.target.value })}
-                        className="w-full px-4 py-2.5 rounded-lg bg-[var(--background)] border border-[var(--color-border)] text-[var(--foreground)] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-status-online)]"
-                      />
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="text-sm text-gray-500 mb-1 block">Microgrid Name</label>
+                        <input
+                          type="text" required placeholder="e.g. Microgrid Delta"
+                          value={authForm.name} onChange={(e) => setAuthForm({ ...authForm, name: e.target.value })}
+                          className="w-full px-4 py-2.5 rounded-lg bg-[var(--background)] border border-[var(--color-border)] text-[var(--foreground)] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-status-online)]"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-sm text-gray-500 mb-1 block">Location</label>
+                        <input
+                          type="text" required placeholder="e.g. Pune, Maharashtra"
+                          value={authForm.location} onChange={(e) => setAuthForm({ ...authForm, location: e.target.value })}
+                          className="w-full px-4 py-2.5 rounded-lg bg-[var(--background)] border border-[var(--color-border)] text-[var(--foreground)] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-status-online)]"
+                        />
+                      </div>
                     </div>
-                    <div>
-                      <label className="text-sm text-gray-500 mb-1 block">Location</label>
-                      <input
-                        type="text" required placeholder="e.g. Pune, Maharashtra"
-                        value={authForm.location} onChange={(e) => setAuthForm({ ...authForm, location: e.target.value })}
-                        className="w-full px-4 py-2.5 rounded-lg bg-[var(--background)] border border-[var(--color-border)] text-[var(--foreground)] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-status-online)]"
-                      />
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="text-sm text-gray-500 mb-1 block">Capacity (kW)</label>
+                        <input
+                          type="number" required min="0" placeholder="e.g. 50"
+                          value={authForm.capacity} onChange={(e) => setAuthForm({ ...authForm, capacity: e.target.value })}
+                          className="w-full px-4 py-2.5 rounded-lg bg-[var(--background)] border border-[var(--color-border)] text-[var(--foreground)] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-status-online)]"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-sm text-gray-500 mb-1 block">Current Gen (kW)</label>
+                        <input
+                          type="number" required min="0" placeholder="e.g. 38"
+                          value={authForm.generation} onChange={(e) => setAuthForm({ ...authForm, generation: e.target.value })}
+                          className="w-full px-4 py-2.5 rounded-lg bg-[var(--background)] border border-[var(--color-border)] text-[var(--foreground)] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-status-online)]"
+                        />
+                      </div>
                     </div>
                     <div>
                       <label className="text-sm text-gray-500 mb-1 block">Set Password</label>
