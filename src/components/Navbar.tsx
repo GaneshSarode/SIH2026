@@ -43,9 +43,8 @@ export default function Navbar() {
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between">
         
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <Activity className="w-8 h-8 text-[#00a651]" />
-          <span className="text-2xl font-bold tracking-tight text-[#004b87] uppercase">GridWatch</span>
+        <Link href="/" className="flex items-center">
+          <img src="/gridwatch-logo.png" alt="GridWatch Logo" className="h-10 md:h-12 w-auto object-contain" />
         </Link>
 
         {/* Desktop Nav Links */}
