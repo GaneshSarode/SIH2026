@@ -1,11 +1,35 @@
 "use client";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowLeft, Car, Battery, Zap, Activity, Thermometer, Clock } from "lucide-react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { EVTelemetry } from "@/lib/mockData";
 import { useTelemetry } from "@/hooks/useTelemetry";
 
-export default function V2GDetailClient({ initialData }: { initialData: EVTelemetry }) {
+export default function V2GDetailClient({ initialData, evId }: { initialData: EVTelemetry | null, evId: string }) {
+  const [localData, setLocalData] = useState<EVTelemetry | null>(initialData);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    if (!initialData) {
+      const stored = localStorage.getItem("gridwatch_ev_telemetry");
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (parsed[evId]) {
+          setLocalData(parsed[evId]);
+        }
+      }
+    }
+  }, [initialData, evId]);
+
+  if (!mounted) return null; // Avoid hydration mismatch
+  if (!localData) return <div className="p-12 text-center text-gray-500 font-bold text-xl">Vehicle Not Found</div>;
+
+  return <V2GDetailClientInner initialData={localData} />;
+}
+
+function V2GDetailClientInner({ initialData }: { initialData: EVTelemetry }) {
   const data = useTelemetry(initialData);
 
   const isCharging = data.mode === "charging";

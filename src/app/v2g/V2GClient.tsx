@@ -91,6 +91,30 @@ export default function V2GClient({ data: initialData }: { data: V2GOverview }) 
       existingEvs.push(newSession);
       localStorage.setItem("gridwatch_registered_evs", JSON.stringify(existingEvs));
 
+      // Save full telemetry data
+      const storedTelemetry = localStorage.getItem("gridwatch_ev_telemetry");
+      const existingTelemetry = storedTelemetry ? JSON.parse(storedTelemetry) : {};
+      
+      existingTelemetry[newId] = {
+        vehicleId: newId,
+        vehicleName: authForm.vehicleName || "Custom EV",
+        soc: Number(authForm.batteryLevel) || 80,
+        soh: Number(authForm.batteryHealth) || 95,
+        voltage: Number(authForm.voltage) || 400,
+        current: Number(authForm.current) || 0,
+        temperature: Number(authForm.temperature) || 30,
+        mode: "idle",
+        powerFlow: 0,
+        nextTripTime: "08:00 AM",
+        targetSoc: 90,
+        history: Array.from({ length: 24 }).map((_, i) => ({
+          time: `${String(i).padStart(2, '0')}:00`,
+          powerFlow: 0,
+          soc: Number(authForm.batteryLevel) || 80
+        }))
+      };
+      localStorage.setItem("gridwatch_ev_telemetry", JSON.stringify(existingTelemetry));
+
       setLocalSessions([...localSessions, newSession]);
       setAuthSuccess(`EV "${authForm.vehicleName}" registered successfully`);
     }

@@ -13,9 +13,5 @@ export default async function V2GDetailPage({ params }: { params: Promise<{ id: 
   const { id } = await params;
   const telemetry = await getEVTelemetry(id);
   
-  if (!telemetry) {
-    notFound();
-  }
-
-  return <V2GDetailClient initialData={telemetry} />;
+  return <V2GDetailClient initialData={telemetry} evId={id} />;
 }
