@@ -93,7 +93,7 @@ export default function MicrogridsClient({ microgrids }: { microgrids: Microgrid
   };
 
   return (
-    <div className="w-full bg-[var(--background)] min-h-screen">
+    <div className="w-full min-h-screen bg-gradient-to-b from-emerald-50/50 to-white">
       <div className="flex flex-col gap-8 max-w-7xl mx-auto px-4 md:px-8 w-full py-8">
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -101,7 +101,7 @@ export default function MicrogridsClient({ microgrids }: { microgrids: Microgrid
           <ArrowLeft className="w-5 h-5" />
         </Link>
         <div className="flex-1">
-          <h1 className="text-3xl font-bold tracking-tight">Microgrids</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-emerald-900">Microgrids</h1>
           <p className="text-gray-500 dark:text-gray-400">Select a microgrid to monitor</p>
         </div>
         <button

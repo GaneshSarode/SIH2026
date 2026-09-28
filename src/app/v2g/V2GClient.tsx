@@ -146,20 +146,20 @@ export default function V2GClient({ data: initialData }: { data: V2GOverview }) 
   );
 
   return (
-    <div className="flex flex-col gap-8 max-w-7xl mx-auto px-4 md:px-8 w-full py-8">
+    <div className="flex flex-col gap-8 max-w-7xl mx-auto px-4 md:px-8 w-full py-8 min-h-screen bg-gradient-to-b from-purple-50/50 to-white">
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-4">
           <Link href="/" className="p-2 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] hover:bg-[var(--background)] transition-colors shadow-sm">
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">Vehicle-to-Grid (V2G)</h1>
+            <h1 className="text-3xl font-bold tracking-tight text-purple-900">Vehicle-to-Grid (V2G)</h1>
             <p className="text-gray-500">Bidirectional EV power flow monitoring</p>
           </div>
         </div>
         <button
           onClick={() => { setShowAuth(true); setAuthMode("login"); }}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#00a651] text-white font-bold hover:bg-[#008c44] transition-colors shadow-md text-sm whitespace-nowrap cursor-pointer"
+          className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-purple-600 text-white font-bold hover:bg-purple-700 transition-colors shadow-md text-sm whitespace-nowrap cursor-pointer"
         >
           <LogIn className="w-4 h-4" />
           Login / Register EV

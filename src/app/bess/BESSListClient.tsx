@@ -19,13 +19,13 @@ export default function BESSListClient() {
   );
 
   return (
-    <div className="flex flex-col gap-8 max-w-7xl mx-auto px-4 md:px-8 w-full py-8">
+    <div className="flex flex-col gap-8 max-w-7xl mx-auto px-4 md:px-8 w-full py-8 min-h-screen bg-gradient-to-b from-amber-50/50 to-white">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <Link href="/" className="p-2 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] hover:bg-[var(--background)] transition-colors shadow-sm">
           <ArrowLeft className="w-5 h-5" />
         </Link>
         <div className="flex-1">
-          <h1 className="text-3xl font-bold tracking-tight">BESS Units</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-amber-900">BESS Units</h1>
           <p className="text-gray-500">Select a Battery Energy Storage System to monitor</p>
         </div>
       </div>
@@ -37,7 +37,7 @@ export default function BESSListClient() {
           placeholder="Search by ID or location..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full pl-12 pr-4 py-3 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--foreground)] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all shadow-sm"
+          className="w-full pl-12 pr-4 py-3 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] text-[var(--foreground)] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all shadow-sm"
         />
       </div>
 
@@ -51,10 +51,10 @@ export default function BESSListClient() {
             <Link
               key={unit.id}
               href={`/bess/${unit.id}`}
-              className="group p-6 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] shadow-sm hover:shadow-lg hover:border-blue-500 transition-all"
+              className="group p-6 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] shadow-sm hover:shadow-lg hover:border-amber-500 transition-all"
             >
               <div className="flex items-center justify-between mb-4">
-                <div className="p-2.5 rounded-lg bg-blue-100 text-blue-700">
+                <div className="p-2.5 rounded-lg bg-amber-100 text-amber-700">
                   <Battery className="w-5 h-5" />
                 </div>
                 <div className="flex items-center gap-1.5">
@@ -63,8 +63,8 @@ export default function BESSListClient() {
                 </div>
               </div>
               <div className="flex items-center justify-between mb-1">
-                <h3 className="text-xl font-semibold group-hover:text-blue-500 transition-colors">{unit.id}</h3>
-                <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
+                <h3 className="text-xl font-semibold group-hover:text-amber-600 transition-colors">{unit.id}</h3>
+                <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-amber-600 group-hover:translate-x-1 transition-all" />
               </div>
               <p className="text-sm text-gray-500 mb-4">{unit.location}</p>
               <div className="pt-4 border-t border-[var(--color-border)]">

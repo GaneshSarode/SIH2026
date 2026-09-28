@@ -8,13 +8,13 @@ export default async function TradePage() {
   const data = await getTradeData();
 
   return (
-    <div className="flex flex-col gap-8 max-w-7xl mx-auto px-4 md:px-8 w-full py-8">
+    <div className="flex flex-col gap-8 max-w-7xl mx-auto px-4 md:px-8 w-full py-8 min-h-screen bg-gradient-to-b from-indigo-50/50 to-white">
       <div className="flex items-center gap-4">
         <Link href="/" className="p-2 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] hover:bg-[var(--background)] transition-colors shadow-sm">
           <ArrowLeft className="w-5 h-5" />
         </Link>
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">International Trade of Renewable Energy</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-indigo-900">International Trade of Renewable Energy</h1>
           <p className="text-gray-500 dark:text-gray-400">Cross-border energy exchange analytics</p>
         </div>
       </div>
