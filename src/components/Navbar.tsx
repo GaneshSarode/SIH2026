@@ -44,7 +44,7 @@ export default function Navbar() {
         
         {/* Logo */}
         <Link href="/" className="flex items-center">
-          <img src="/gridwatch-logo.png" alt="GridWatch Logo" className="h-10 md:h-12 w-auto object-contain" />
+          <img src="/gridwatch-logo-hq.png" alt="GridWatch Logo" className="h-14 md:h-16 w-auto object-contain" />
         </Link>
 
         {/* Desktop Nav Links */}
@@ -77,7 +77,7 @@ export default function Navbar() {
           ) : (
             <Link
               href="/login"
-              className="px-6 py-2.5 bg-[#00a651] text-white text-sm font-bold uppercase tracking-wide hover:bg-[#008c44] transition-colors rounded-sm"
+              className="cursor-pointer px-6 py-2.5 bg-[#00a651] text-white text-sm font-bold uppercase tracking-wide hover:bg-[#008c44] transition-colors rounded-sm"
             >
               Login
             </Link>

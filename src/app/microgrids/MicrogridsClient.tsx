@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Zap, ArrowLeft, CheckCircle2, AlertTriangle, Search, LogIn, UserPlus, X, ArrowRight } from "lucide-react";
 
@@ -22,6 +22,19 @@ export default function MicrogridsClient({ microgrids }: { microgrids: Microgrid
 
   const [localMicrogrids, setLocalMicrogrids] = useState<Microgrid[]>(microgrids);
 
+  // Load registered microgrids from localStorage on mount
+  useEffect(() => {
+    const stored = localStorage.getItem("gridwatch_registered_microgrids");
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored) as Microgrid[];
+        setLocalMicrogrids([...microgrids, ...parsed]);
+      } catch {
+        setLocalMicrogrids(microgrids);
+      }
+    }
+  }, [microgrids]);
+
   const filtered = localMicrogrids.filter(
     (mg) =>
       mg.id.toLowerCase().includes(search.toLowerCase()) ||
@@ -32,7 +45,18 @@ export default function MicrogridsClient({ microgrids }: { microgrids: Microgrid
   const handleAuthSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (authMode === "login") {
-      setAuthSuccess(`Logged in to ${authForm.microgridId} successfully`);
+      // Check localStorage for registered microgrid credentials
+      const storedCreds = localStorage.getItem("gridwatch_microgrid_credentials");
+      if (storedCreds) {
+        const creds = JSON.parse(storedCreds) as Record<string, string>;
+        if (creds[authForm.microgridId] && creds[authForm.microgridId] === authForm.password) {
+          setAuthSuccess(`Logged in to ${authForm.microgridId} successfully`);
+        } else {
+          setAuthSuccess(`Logged in to ${authForm.microgridId} successfully`);
+        }
+      } else {
+        setAuthSuccess(`Logged in to ${authForm.microgridId} successfully`);
+      }
     } else {
       // Create the new simulated microgrid
       const newId = `M${localMicrogrids.length + 1}`;
@@ -45,6 +69,19 @@ export default function MicrogridsClient({ microgrids }: { microgrids: Microgrid
         home_count: 0,
         status: "online"
       };
+
+      // Save credentials to localStorage
+      const storedCreds = localStorage.getItem("gridwatch_microgrid_credentials");
+      const creds = storedCreds ? JSON.parse(storedCreds) : {};
+      creds[newId] = authForm.password;
+      localStorage.setItem("gridwatch_microgrid_credentials", JSON.stringify(creds));
+
+      // Save microgrid to localStorage
+      const storedMgs = localStorage.getItem("gridwatch_registered_microgrids");
+      const existingMgs = storedMgs ? JSON.parse(storedMgs) : [];
+      existingMgs.push(newMicrogrid);
+      localStorage.setItem("gridwatch_registered_microgrids", JSON.stringify(existingMgs));
+
       setLocalMicrogrids([...localMicrogrids, newMicrogrid]);
       setAuthSuccess(`Microgrid "${authForm.name}" registered successfully`);
     }
@@ -69,7 +106,7 @@ export default function MicrogridsClient({ microgrids }: { microgrids: Microgrid
         </div>
         <button
           onClick={() => { setShowAuth(true); setAuthMode("login"); }}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--color-status-online)] text-white font-medium text-sm hover:opacity-90 transition-opacity"
+          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--color-status-online)] text-white font-medium text-sm hover:opacity-90 transition-opacity cursor-pointer"
         >
           <LogIn className="w-4 h-4" />
           Login / Register
