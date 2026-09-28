@@ -44,7 +44,7 @@ export default function Navbar() {
         
         {/* Logo */}
         <Link href="/" className="flex items-center">
-          <img src="/gridwatch-logo-hq.png" alt="GridWatch Logo" className="h-14 md:h-16 w-auto object-contain" />
+          <img src="/gridwatch-logo-transparent.png" alt="GridWatch Logo" className="h-10 md:h-14 w-auto object-contain" style={{ maxHeight: '60px' }} />
         </Link>
 
         {/* Desktop Nav Links */}
