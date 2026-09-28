@@ -14,7 +14,7 @@ export default async function TradePage() {
           <ArrowLeft className="w-5 h-5" />
         </Link>
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">International Power Trade</h1>
+          <h1 className="text-3xl font-bold tracking-tight">International Trade of Renewable Energy</h1>
           <p className="text-gray-500 dark:text-gray-400">Cross-border energy exchange analytics</p>
         </div>
       </div>

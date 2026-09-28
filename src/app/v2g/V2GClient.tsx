@@ -49,14 +49,19 @@ export default function V2GClient({ data: initialData }: { data: V2GOverview }) 
 
   return (
     <div className="flex flex-col gap-8 max-w-7xl mx-auto px-4 md:px-8 w-full py-8">
-      <div className="flex items-center gap-4">
-        <Link href="/" className="p-2 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] hover:bg-[var(--background)] transition-colors shadow-sm">
-          <ArrowLeft className="w-5 h-5" />
-        </Link>
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Vehicle-to-Grid (V2G)</h1>
-          <p className="text-gray-500">Bidirectional EV power flow monitoring</p>
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <Link href="/" className="p-2 rounded-full bg-[var(--color-surface)] border border-[var(--color-border)] hover:bg-[var(--background)] transition-colors shadow-sm">
+            <ArrowLeft className="w-5 h-5" />
+          </Link>
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">Vehicle-to-Grid (V2G)</h1>
+            <p className="text-gray-500">Bidirectional EV power flow monitoring</p>
+          </div>
         </div>
+        <Link href="/login" className="px-6 py-2.5 rounded-lg bg-[#00a651] text-white font-bold hover:bg-[#008c44] transition-colors shadow-md text-sm whitespace-nowrap">
+          Login / Register EV
+        </Link>
       </div>
 
       {isEvResponse && (

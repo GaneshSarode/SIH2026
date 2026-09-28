@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState<"operator" | "consumer">("operator");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -50,15 +51,38 @@ export default function LoginPage() {
         )}
 
         <form onSubmit={handleLogin} className="flex flex-col gap-5">
+          <div className="flex bg-[var(--background)] p-1 rounded-xl mb-2 border border-[var(--color-border)]">
+            <button
+              type="button"
+              onClick={() => setRole("operator")}
+              className={`flex-1 py-2 text-sm font-bold rounded-lg transition-all ${
+                role === "operator" ? "bg-white dark:bg-gray-800 shadow text-[#004b87]" : "text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              Operator
+            </button>
+            <button
+              type="button"
+              onClick={() => setRole("consumer")}
+              className={`flex-1 py-2 text-sm font-bold rounded-lg transition-all ${
+                role === "consumer" ? "bg-white dark:bg-gray-800 shadow text-[#00a651]" : "text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              Consumer
+            </button>
+          </div>
+
           <div>
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 block">Operator Email</label>
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 block">
+              {role === "operator" ? "Operator Email" : "Consumer Email"}
+            </label>
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 rounded-xl bg-[var(--background)] border border-[var(--color-border)] text-[var(--foreground)] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-status-online)] focus:border-transparent transition-all"
-              placeholder="e.g. operator@gridwatch.com"
+              placeholder={role === "operator" ? "e.g. operator@gridwatch.com" : "e.g. home@gridwatch.com"}
             />
           </div>
           

@@ -344,8 +344,7 @@ export async function getTradeData(): Promise<TradeOverview> {
       { country: "Nepal", direction: "export", volume: 450, pricePerUnit: 4.5, status: "active" },
       { country: "Bangladesh", direction: "export", volume: 680, pricePerUnit: 5.1, status: "active" },
       { country: "Bhutan", direction: "import", volume: 820, pricePerUnit: 3.8, status: "active" },
-      { country: "Myanmar", direction: "export", volume: 760, pricePerUnit: 5.4, status: "scheduled" },
-      { country: "Sri Lanka", direction: "import", volume: 430, pricePerUnit: 4.2, status: "completed" },
+      { country: "Myanmar", direction: "export", volume: 760, pricePerUnit: 5.4, status: "scheduled" }
     ],
     history: [
       { month: "Jan", imports: 180, exports: 220 },
