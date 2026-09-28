@@ -47,7 +47,7 @@ const slides = [
     link: "/v2g",
     linkText: "Monitor EV Fleets",
     icon: <Car className="w-8 h-8 md:w-12 md:h-12 text-[#00a651] mb-4 md:mb-6" />,
-    bgImage: "/card-v2g.jpg",
+    bgImage: "/hero-v2g.jpg",
     label: "V2G"
   }
 ];
